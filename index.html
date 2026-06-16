@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NARILOLANÉ – Formulaire de candidature</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bordeaux: #4A1428;
+    --bordeaux-light: #6b2040;
+    --gold: #C9A84C;
+    --gold-light: #e0c070;
+    --beige: #F5ECD8;
+    --beige-dark: #ecdfc4;
+    --white: #fff;
+    --text: #2a0d18;
+    --muted: #7a5060;
+  }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--beige);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--bordeaux);
+    text-align: center;
+    padding: 36px 20px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.08);
+    pointer-events: none;
+  }
+  .header-ring {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+  }
+  .header .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--beige);
+    font-size: 1rem;
+    margin-top: 4px;
+    opacity: 0.85;
+  }
+  .header .flags {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+  }
+
+  /* INFO BANNER */
+  .banner {
+    background: var(--gold);
+    padding: 14px 20px;
+    text-align: center;
+  }
+  .banner p {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--bordeaux);
+    line-height: 1.5;
+  }
+  .banner strong { font-weight: 700; }
+
+  /* DUALITE BLOC */
+  .dualite {
+    background: var(--white);
+    margin: 20px 16px 0;
+    border-radius: 12px;
+    border-left: 4px solid var(--gold);
+    padding: 18px 20px;
+  }
+  .dualite h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--bordeaux);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .dualite .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 7px;
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .dualite .row .check { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+  .dualite .arrow {
+    background: var(--bordeaux);
+    color: var(--beige);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* PROCESSUS */
+  .process {
+    margin: 16px 16px 0;
+    background: var(--bordeaux);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .process h2 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .step-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.18);
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+  .step-text {
+    font-size: 0.82rem;
+    color: var(--beige);
+    line-height: 1.5;
+    padding-top: 6px;
+  }
+  .step-text strong { color: var(--gold); }
+
+  /* FORM */
+  .form-container {
+    margin: 20px 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--bordeaux);
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid var(--gold);
+  }
+
+  .field-group {
+    margin-bottom: 18px;
+  }
+  label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--bordeaux);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  label .required { color: var(--gold); margin-left: 2px; }
+  label .hint {
+    font-weight: 300;
+    color: var(--muted);
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 2px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--white);
+    border: 1.5px solid var(--beige-dark);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--gold);
+  }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* RADIO / CHECKBOX GROUP */
+  .radio-group, .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radio-group label, .check-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 400;
+    margin: 0;
+    cursor: pointer;
+    background: var(--white);
+    border: 1.5px solid var(--beige-dark);
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .radio-group label:has(input:checked),
+  .check-group label:has(input:checked) {
+    border-color: var(--gold);
+    background: #fdf7ed;
+  }
+  .radio-group input, .check-group input { accent-color: var(--bordeaux); }
+
+  /* CONDITIONAL */
+  .conditional {
+    display: none;
+    margin-top: 10px;
+    padding: 12px;
+    background: #fdf7ed;
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+  }
+  .conditional.visible { display: block; }
+  .conditional label { color: var(--muted); }
+
+  /* SEPARATOR */
+  .sep {
+    height: 1px;
+    background: var(--beige-dark);
+    margin: 24px 0;
+  }
+
+  /* CONFIDENTIALITE */
+  .confid {
+    background: var(--bordeaux);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+  .confid h3 {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .confid ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .confid ul li {
+    font-size: 0.8rem;
+    color: var(--beige);
+    display: flex; gap: 8px; align-items: flex-start;
+    line-height: 1.5;
+  }
+  .confid ul li span.dot { color: var(--gold); flex-shrink: 0; }
+
+  /* CHARTE */
+  .charte {
+    background: var(--white);
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 24px;
+  }
+  .charte label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 0.82rem;
+    color: var(--text);
+    font-weight: 400;
+    cursor: pointer;
+    margin: 0;
+  }
+  .charte input { accent-color: var(--bordeaux); margin-top: 3px; flex-shrink: 0; }
+
+  /* DON */
+  .don-btn {
+    width: 100%;
+    background: transparent;
+    color: var(--bordeaux);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .don-btn:hover { background: #fdf7ed; }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .submit-btn:hover { background: #1db954; }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+  /* ERREUR */
+  .error-msg {
+    display: none;
+    background: #fde8e8;
+    border: 1.5px solid #e05555;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.82rem;
+    color: #b91c1c;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .error-msg.visible { display: block; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px 20px 40px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.8;
+  }
+  .footer .alh {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--bordeaux);
+    font-style: italic;
+  }
+
+  /* Highlight invalide */
+  input.invalid, textarea.invalid, select.invalid {
+    border-color: #e05555 !important;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-ring">💍</div>
+  <h1>NARILOLANÉ</h1>
+  <div class="subtitle">« Marions-nous »</div>
+  <div class="flags">🇰🇲 🇾🇹</div>
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+  <p><strong>Salam alaykoum wa rahmatoullah</strong><br>Bienvenue — veuillez lire attentivement avant de remplir ce formulaire.</p>
+</div>
+
+<!-- DUALITE -->
+<div class="dualite">
+  <h2>📢 Ce formulaire est pour vous si :</h2>
+  <div class="row"><span class="check">✅</span><span>Vous souhaitez <strong>publier votre annonce</strong> (être présenté·e à des candidats)</span></div>
+  <div class="row"><span class="check">✅</span><span>Vous souhaitez <strong>répondre à une annonce</strong> déjà publiée</span></div>
+  <div class="arrow">➡️ Dans les deux cas, remplissez ce même questionnaire.<br>Nous nous occupons du reste.</div>
+</div>
+
+<!-- PROCESSUS -->
+<div class="process">
+  <h2>🤝 Notre accompagnement</h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-icon">1</div>
+      <div class="step-text"><strong>Réception & vérification</strong> de votre dossier</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">2</div>
+      <div class="step-text"><strong>Sélection personnalisée</strong> selon vos critères</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">3</div>
+      <div class="step-text"><strong>Publication anonyme</strong> ou transmission encadrée de votre dossier</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">4</div>
+      <div class="step-text"><strong>Salon de discussion encadré</strong> en présence du mahram + signature de charte</div>
+    </div>
+    <div class="step">
+      <div class="step-icon">5</div>
+      <div class="step-text"><strong>Accompagnement</strong> jusqu'à l'accord des deux parties 🤲</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULAIRE -->
+<div class="form-container">
+
+  <div class="sep"></div>
+  <div class="section-title">📋 Questionnaire de candidature</div>
+
+  <!-- ORIGINE -->
+  <div class="field-group">
+    <label>📍 Île d'origine <span class="required">*</span><span class="hint">Région / Village (le village peut rester confidentiel)</span></label>
+    <input type="text" id="origine" placeholder="Ex : Grande Comore – Moroni">
+  </div>
+
+  <!-- NOM -->
+  <div class="field-group">
+    <label>👤 Nom et prénom <span class="required">*</span><span class="hint">Ne sera jamais publié — usage interne uniquement</span></label>
+    <input type="text" id="nom" placeholder="Votre nom complet">
+  </div>
+
+  <!-- AGE -->
+  <div class="field-group">
+    <label>🎂 Âge <span class="required">*</span></label>
+    <input type="number" id="age" placeholder="Votre âge" min="18" max="99">
+  </div>
+
+  <!-- TAILLE -->
+  <div class="field-group">
+    <label>📏 Taille <span class="required">*</span></label>
+    <input type="text" id="taille" placeholder="Ex : 1m68">
+  </div>
+
+  <!-- VILLE -->
+  <div class="field-group">
+    <label>🏙️ Ville actuelle <span class="required">*</span></label>
+    <input type="text" id="ville" placeholder="Ex : Paris, Marseille, Moroni…">
+  </div>
+
+  <!-- SITUATION PRO -->
+  <div class="field-group">
+    <label>💼 Situation professionnelle <span class="required">*</span></label>
+    <input type="text" id="pro" placeholder="Ex : Infirmière, Étudiant en droit, Auto-entrepreneur…">
+  </div>
+
+  <!-- SITUATION ADMIN -->
+  <div class="field-group">
+    <label>📄 Situation administrative <span class="required">*</span></label>
+    <select id="admin">
+      <option value="">— Sélectionnez —</option>
+      <option value="Nationalité française">Nationalité française</option>
+      <option value="Titre de séjour">Titre de séjour</option>
+      <option value="Sans papiers">Sans papiers</option>
+      <option value="Nationalité du pays de résidence (hors France)">Nationalité du pays de résidence (hors France)</option>
+    </select>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- QUALITES -->
+  <div class="field-group">
+    <label>💡 Vos qualités personnelles <span class="required">*</span><span class="hint">Soyez sincère — c'est ce que les candidats liront</span></label>
+    <textarea id="qualites" placeholder="Ex : Patient(e), à l'écoute, travailleur(se), pratiquant(e) assidu(e)…"></textarea>
+  </div>
+
+  <!-- PRATIQUE RELIGIEUSE -->
+  <div class="field-group">
+    <label>☪️ Votre pratique religieuse <span class="required">*</span></label>
+    <textarea id="religion" placeholder="Ex : Je fais mes 5 prières, je porte le voile, je respecte les piliers de l'islam…"></textarea>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- STATUT MATRIMONIAL -->
+  <div class="field-group">
+    <label>💒 Statut matrimonial <span class="required">*</span></label>
+    <div class="radio-group">
+      <label><input type="radio" name="statut" value="Célibataire"> Célibataire</label>
+      <label><input type="radio" name="statut" value="Divorcé(e)"> Divorcé(e)</label>
+      <label><input type="radio" name="statut" value="Veuf(ve)"> Veuf(ve)</label>
+      <label><input type="radio" name="statut" value="Marié(e) — souhaite une seconde épouse" id="statut_marie"> Marié(e) — souhaite une seconde épouse</label>
+    </div>
+    <div class="conditional" id="cond_marie">
+      <label>⚠️ Votre épouse actuelle est-elle informée de votre démarche ? <span class="required">*</span><span class="hint">La transparence est une condition non négociable chez NARILOLANÉ.</span></label>
+      <div class="radio-group">
+        <label><input type="radio" name="marie_info" value="Oui, mon épouse est informée"> ✅ Oui, mon épouse est informée</label>
+        <label><input type="radio" name="marie_info" value="Non, pas encore"> ❌ Non, pas encore</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENFANTS -->
+  <div class="field-group">
+    <label>👶 Avez-vous des enfants ? <span class="required">*</span></label>
+    <div class="radio-group">
+      <label><input type="radio" name="enfants" value="Non" id="enfants_non"> Non</label>
+      <label><input type="radio" name="enfants" value="Oui" id="enfants_oui"> Oui</label>
+    </div>
+    <div class="conditional" id="cond_enfants">
+      <label>Combien d'enfants ? <span class="required">*</span></label>
+      <input type="number" id="nb_enfants" placeholder="Nombre d'enfants" min="1">
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- CRITERES -->
+  <div class="field-group">
+    <label>💍 Critères souhaités pour votre futur(e) conjoint(e) <span class="required">*</span><span class="hint">Tranche d'âge, situation, valeurs recherchées…</span></label>
+    <textarea id="criteres" placeholder="Ex : Entre 25 et 35 ans, pratiquante, sérieuse, qui accepte de vivre en France…"></textarea>
+  </div>
+
+  <!-- ACCEPTATIONS -->
+  <div class="field-group">
+    <label>❓ Vous accepteriez… <span class="hint">Cochez tout ce qui s'applique</span></label>
+    <div class="check-group">
+      <label><input type="checkbox" name="accept" value="une personne ayant déjà été mariée"> Une personne ayant déjà été mariée</label>
+      <label><input type="checkbox" name="accept" value="une personne ayant des enfants"> Une personne ayant des enfants</label>
+      <label><input type="checkbox" name="accept" value="une personne sans papiers mais travaillant"> Une personne sans papiers (mais travaillant)</label>
+      <label><input type="checkbox" name="accept" value="une personne avec statut étudiant"> Une personne avec statut étudiant</label>
+      <label><input type="checkbox" name="accept" value="de déménager pour rejoindre mon/ma conjoint(e)"> De déménager pour rejoindre mon/ma conjoint(e)</label>
+      <label><input type="checkbox" name="accept" value="une personne résidant aux Comores ou hors d'Europe"> Une personne résidant aux Comores ou hors d'Europe</label>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- CONFIDENTIALITE -->
+  <div class="confid">
+    <h3>🔐 Confidentialité & sécurité</h3>
+    <ul>
+      <li><span class="dot">•</span><span>Votre annonce est publiée de manière <strong>totalement anonyme</strong></span></li>
+      <li><span class="dot">•</span><span>Vos coordonnées ne sont jamais partagées publiquement</span></li>
+      <li><span class="dot">•</span><span>Votre identité est vérifiée en amont (procédure sécurisée)</span></li>
+      <li><span class="dot">•</span><span>Une <strong>charte d'engagement</strong> est signée avant tout échange</span></li>
+      <li><span class="dot">•</span><span>Les échanges ont lieu dans un <strong>salon encadré</strong>, en présence du mahram</span></li>
+    </ul>
+  </div>
+
+  <!-- CHARTE -->
+  <div class="charte">
+    <label>
+      <input type="checkbox" id="charte_check">
+      <span>Je certifie sur l'honneur que mes informations sont exactes. Je confirme que mon casier judiciaire est vierge et que je n'ai aucune condamnation en cours. Je comprends que NARILOLANÉ est un service matrimonial sérieux destiné aux personnes sincèrement prêtes au mariage.</span>
+    </label>
+  </div>
+
+  <!-- ERREUR -->
+  <div class="error-msg" id="error_msg">
+    ⚠️ Veuillez remplir tous les champs obligatoires (marqués d'une *) et cocher la déclaration sur l'honneur avant d'envoyer.
+  </div>
+
+  <!-- BOUTON DON -->
+  <a class="don-btn" href="https://www.paypal.me/Narilolane" target="_blank">
+    🤍 Soutenir NARILOLANÉ — faire un don
+  </a>
+
+  <!-- BOUTON ENVOYER -->
+  <button class="submit-btn" onclick="envoyerWhatsApp()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Envoyer ma candidature sur WhatsApp
+  </button>
+
+  <div class="footer">
+    <div class="alh">Alhamdoulillah — +35 mariages réalisés 💍</div>
+    <br>
+    Une réponse vous sera apportée sous quelques jours.<br>
+    Merci de vous armer de patience — chaque dossier mérite une attention sérieuse.<br><br>
+    <em>Qu'Allah facilite votre union 🤲</em>
+  </div>
+
+</div>
+
+<script>
+  // Conditional: marié
+  document.querySelectorAll('input[name="statut"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const cond = document.getElementById('cond_marie');
+      cond.classList.toggle('visible', r.value.includes('seconde') && r.checked);
+    });
+  });
+
+  // Conditional: enfants
+  document.querySelectorAll('input[name="enfants"]').forEach(r => {
+    r.addEventListener('change', () => {
+      document.getElementById('cond_enfants').classList.toggle('visible', r.value === 'Oui');
+    });
+  });
+
+  function getRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+
+  function getCheckboxes(name) {
+    const checked = [...document.querySelectorAll(`input[name="${name}"]:checked`)];
+    return checked.length ? checked.map(c => '✅ ' + c.value).join('\n') : '❌ Aucune sélection';
+  }
+
+  function val(id) {
+    return (document.getElementById(id)?.value || '').trim();
+  }
+
+  function markInvalid(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('invalid');
+  }
+
+  function clearInvalid() {
+    document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+  }
+
+  function envoyerWhatsApp() {
+    clearInvalid();
+    const erreur = document.getElementById('error_msg');
+    erreur.classList.remove('visible');
+
+    const champs = {
+      origine: val('origine'),
+      nom: val('nom'),
+      age: val('age'),
+      taille: val('taille'),
+      ville: val('ville'),
+      pro: val('pro'),
+      admin: val('admin'),
+      qualites: val('qualites'),
+      religion: val('religion'),
+      statut: getRadio('statut'),
+      enfants: getRadio('enfants'),
+      criteres: val('criteres'),
+    };
+
+    const charte = document.getElementById('charte_check').checked;
+
+    // Validation
+    let erreurs = false;
+    Object.entries(champs).forEach(([k, v]) => {
+      if (!v) { markInvalid(k); erreurs = true; }
+    });
+    if (!charte) erreurs = true;
+
+    if (erreurs) {
+      erreur.classList.add('visible');
+      erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Infos conditionnelles
+    const marieInfo = champs.statut.includes('seconde') ? `\n↳ Épouse informée : ${getRadio('marie_info') || 'Non précisé'}` : '';
+    const enfantsInfo = champs.enfants === 'Oui' ? ` (${val('nb_enfants') || '?'} enfant(s))` : '';
+    const acceptations = getCheckboxes('accept');
+
+    const message =
+`💍 *NARILOLANÉ – Nouvelle candidature*
+━━━━━━━━━━━━━━━━━━━━
+
+👤 *IDENTITÉ* _(confidentiel)_
+• Nom : ${champs.nom}
+• Île/région/village : ${champs.origine}
+• Âge : ${champs.age} ans
+• Taille : ${champs.taille}
+• Ville : ${champs.ville}
+
+💼 *SITUATION*
+• Professionnelle : ${champs.pro}
+• Administrative : ${champs.admin}
+
+💒 *STATUT*
+• Matrimonial : ${champs.statut}${marieInfo}
+• Enfants : ${champs.enfants}${enfantsInfo}
+
+☪️ *PROFIL PERSONNEL*
+• Qualités : ${champs.qualites}
+• Pratique religieuse : ${champs.religion}
+
+💍 *CRITÈRES CONJOINT(E)*
+${champs.criteres}
+
+❓ *ACCEPTATIONS*
+${acceptations}
+
+✍️ _Déclaration sur l'honneur signée_
+━━━━━━━━━━━━━━━━━━━━`;
+
+    const numero = '33613857373';
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+</script>
+</body>
+</html>
