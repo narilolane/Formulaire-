@@ -682,14 +682,14 @@
       </select>
     </div>
     <div class="field-group">
-      <label>Région</label>
+      <label>Région <span class="required">*</span></label>
       <input type="text" id="region" placeholder="Votre région">
     </div>
   </div>
 
   <div class="field-row">
     <div class="field-group">
-      <label>Village</label>
+      <label>Village <span class="required">*</span></label>
       <input type="text" id="village" placeholder="Votre village">
     </div>
     <div class="field-group">
@@ -705,7 +705,7 @@
   <div class="sep"></div>
 
   <!-- SECTION 3 : SITUATION -->
-  <div class="section-block">Situation personnelle</div>
+  <div class="section-block">Situation personnelle <span class="section-confid">actuelle</span></div>
 
   <div class="field-row">
     <div class="field-group">
@@ -719,13 +719,13 @@
       </select>
     </div>
     <div class="field-group">
-      <label>👶 Enfants <span class="required">*</span></label>
+      <label>👶 Avez-vous des enfants actuellement ? <span class="required">*</span></label>
       <select id="enfants" onchange="toggleEnfants(this)">
         <option value="">— Choisir —</option>
-        <option value="Pas d'enfants">Pas d'enfants</option>
-        <option value="1 enfant">1 enfant</option>
-        <option value="2 enfants">2 enfants</option>
-        <option value="3 enfants ou plus">3 enfants ou plus</option>
+        <option value="Non, je n'ai pas d'enfants">Non, je n'ai pas d'enfants</option>
+        <option value="Oui, 1 enfant">Oui, 1 enfant</option>
+        <option value="Oui, 2 enfants">Oui, 2 enfants</option>
+        <option value="Oui, 3 enfants ou plus">Oui, 3 enfants ou plus</option>
       </select>
     </div>
   </div>
@@ -761,8 +761,8 @@
   </div>
 
   <div class="field-group">
-    <label>💡 Vos qualités personnelles <span class="required">*</span><span class="hint">Soyez sincère — c'est ce que les candidats liront</span></label>
-    <textarea id="qualites" placeholder="Ex : Patient(e), à l'écoute, travailleur(se), pratiquant(e) assidu(e)…"></textarea>
+    <label>💡 Vos qualités & projet de vie <span class="required">*</span><span class="hint">Décrivez-vous sincèrement : vos qualités, vos valeurs, votre mode de vie et ce que vous souhaitez construire dans votre mariage</span></label>
+    <textarea id="qualites" placeholder="Ex : Je suis quelqu'un de calme, à l'écoute et pratiquant(e). Je souhaite construire une famille stable basée sur la dîn et la bienveillance. Dans mon quotidien…"></textarea>
   </div>
 
   <div class="sep"></div>
@@ -771,13 +771,13 @@
   <div class="section-block">Ce que vous recherchez</div>
 
   <div class="field-group">
-    <label>💍 Critères souhaités <span class="required">*</span><span class="hint">Tranche d'âge, origine, valeurs…</span></label>
-    <textarea id="criteres" placeholder="Ex : Entre 25 et 35 ans, pratiquante, sérieuse, qui accepte de vivre en France…"></textarea>
+    <label>💍 Ce que vous recherchez chez votre futur(e) conjoint(e) <span class="required">*</span><span class="hint">Décrivez les valeurs, la personnalité, la pratique religieuse attendues — puis la tranche d'âge</span></label>
+    <textarea id="criteres" placeholder="Ex : Je recherche quelqu'un de pratiquant(e), calme, honnête, avec une vision claire de la famille. Une personne mature, stable émotionnellement, qui partage mes valeurs. Tranche d'âge : entre 28 et 38 ans…"></textarea>
   </div>
 
   <div class="field-row">
     <div class="field-group">
-      <label>Quelqu'un avec enfants ?</label>
+      <label>Quelqu'un avec enfants ? <span class="required">*</span></label>
       <select id="acc_enfants" onchange="togglePrec(this,'prec_enfants')">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
@@ -787,7 +787,7 @@
       <textarea id="prec_enfants" class="prec-field" placeholder="Précisez quelle situation ?"></textarea>
     </div>
     <div class="field-group">
-      <label>Quelqu'un à l'étranger ?</label>
+      <label>Quelqu'un à l'étranger ? <span class="required">*</span></label>
       <select id="acc_etranger" onchange="togglePrec(this,'prec_etranger')">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
@@ -800,7 +800,7 @@
 
   <div class="field-row">
     <div class="field-group">
-      <label>Prêt(e) à déménager ?</label>
+      <label>Prêt(e) à déménager ? <span class="required">*</span></label>
       <select id="acc_demenager" onchange="togglePrec(this,'prec_demenager')">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
@@ -810,7 +810,7 @@
       <textarea id="prec_demenager" class="prec-field" placeholder="Précisez quelle situation ?"></textarea>
     </div>
     <div class="field-group">
-      <label>Quelqu'un sans papiers ?</label>
+      <label>Quelqu'un sans papiers ? <span class="required">*</span></label>
       <select id="acc_papiers" onchange="togglePrec(this,'prec_papiers')">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
@@ -822,7 +822,7 @@
   </div>
 
   <div class="field-group">
-    <label>Statut étudiant accepté ?</label>
+    <label>Statut étudiant accepté ? <span class="required">*</span></label>
     <select id="acc_etudiant" onchange="togglePrec(this,'prec_etudiant')">
       <option value="">— Choisir —</option>
       <option value="Oui">Oui</option>
@@ -953,12 +953,19 @@
     const erreur = document.getElementById('error_msg');
     erreur.classList.remove('visible');
 
-    const requis = ['prenom','nom','age','taille','whatsapp','ile','ville','statut','enfants','pro','admin','religion','qualites','criteres'];
+    // Tous les champs texte/select obligatoires
+    const requis = ['prenom','nom','age','taille','whatsapp','ile','region','village','ville','statut','enfants','pro','admin','religion','qualites','criteres','acc_enfants','acc_etranger','acc_demenager','acc_papiers','acc_etudiant'];
     let erreurs = false;
     requis.forEach(id => { if (!val(id)) { markInvalid(id); erreurs = true; } });
 
+    // Type candidature obligatoire
     const typeCandidature = document.querySelector('input[name="type_candidature"]:checked')?.value;
     if (!typeCandidature) erreurs = true;
+
+    // Si répondre à une annonce, ref obligatoire
+    if (typeCandidature === 'Répondre à une annonce déjà publiée' && !val('ref_annonce')) {
+      markInvalid('ref_annonce'); erreurs = true;
+    }
 
     const charte = document.getElementById('charte_check').checked;
     if (!charte) erreurs = true;
