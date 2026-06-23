@@ -649,6 +649,14 @@
     </div>
   </div>
 
+  <div class="field-group">
+    <label>👤 Vous êtes <span class="required">*</span></label>
+    <div class="radio-group">
+      <label><input type="radio" name="genre" value="Un homme"> 🧔 Un homme</label>
+      <label><input type="radio" name="genre" value="Une femme"> 👩 Une femme</label>
+    </div>
+  </div>
+
   <div class="field-row">
     <div class="field-group">
       <label>🎂 Âge <span class="required">*</span></label>
@@ -773,6 +781,17 @@
   <div class="field-group">
     <label>💍 Ce que vous recherchez chez votre futur(e) conjoint(e) <span class="required">*</span><span class="hint">Décrivez les valeurs, la personnalité, la pratique religieuse attendues — puis la tranche d'âge</span></label>
     <textarea id="criteres" placeholder="Ex : Je recherche quelqu'un de pratiquant(e), calme, honnête, avec une vision claire de la famille. Une personne mature, stable émotionnellement, qui partage mes valeurs. Tranche d'âge : entre 28 et 38 ans…"></textarea>
+  </div>
+
+  <div class="field-group">
+    <label>🏝️ Île d'origine souhaitée <span class="required">*</span><span class="hint">Vous pouvez cocher plusieurs choix</span></label>
+    <div class="check-group">
+      <label><input type="checkbox" name="ile_souhaitee" value="Grande Comore (Ngazidja)"> Grande Comore (Ngazidja)</label>
+      <label><input type="checkbox" name="ile_souhaitee" value="Anjouan (Ndzuani)"> Anjouan (Ndzuani)</label>
+      <label><input type="checkbox" name="ile_souhaitee" value="Mohéli (Mwali)"> Mohéli (Mwali)</label>
+      <label><input type="checkbox" name="ile_souhaitee" value="Mayotte (Maore)"> Mayotte (Maore)</label>
+      <label><input type="checkbox" name="ile_souhaitee" value="Peu importe l'île"> 🤍 Peu importe l'île</label>
+    </div>
   </div>
 
   <div class="field-row">
@@ -958,6 +977,14 @@
     let erreurs = false;
     requis.forEach(id => { if (!val(id)) { markInvalid(id); erreurs = true; } });
 
+    // Genre obligatoire
+    const genre = document.querySelector('input[name="genre"]:checked')?.value;
+    if (!genre) erreurs = true;
+
+    // Île souhaitée : au moins une case cochée
+    const ilesSouhaitees = [...document.querySelectorAll('input[name="ile_souhaitee"]:checked')].map(c => c.value);
+    if (ilesSouhaitees.length === 0) erreurs = true;
+
     // Type candidature obligatoire
     const typeCandidature = document.querySelector('input[name="type_candidature"]:checked')?.value;
     if (!typeCandidature) erreurs = true;
@@ -992,6 +1019,7 @@
 📌 *OBJET* : ${objetLine}
 
 👤 *IDENTITÉ* _(confidentiel)_
+• Genre : ${genre}
 • Prénom : ${val('prenom')}
 • Nom : ${val('nom')}
 • Âge : ${val('age')} ans
@@ -1013,6 +1041,7 @@
 • Qualités : ${val('qualites')}
 
 💍 *RECHERCHE*
+• Île(s) souhaitée(s) : ${ilesSouhaitees.join(', ')}
 • Critères : ${val('criteres')}
 • Quelqu'un avec enfants : ${getPrec('acc_enfants','prec_enfants')}
 • Quelqu'un à l'étranger : ${getPrec('acc_etranger','prec_etranger')}
