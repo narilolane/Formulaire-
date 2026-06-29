@@ -9,8 +9,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bordeaux: #4A1428;
-    --bordeaux-light: #6b2040;
+    --bordeaux: #6B2D4E;
+    --bordeaux-light: #7d3460;
     --gold: #C9A84C;
     --gold-light: #e0c070;
     --beige: #F5ECD8;
@@ -652,9 +652,16 @@
   <div class="field-group">
     <label>👤 Vous êtes <span class="required">*</span></label>
     <div class="radio-group">
-      <label><input type="radio" name="genre" value="Un homme"> 🧔 Un homme</label>
-      <label><input type="radio" name="genre" value="Une femme"> 👩 Une femme</label>
+      <label><input type="radio" name="genre" value="Un homme" onclick="toggleMahram(false)"> 🧔 Un homme</label>
+      <label><input type="radio" name="genre" value="Une femme" onclick="toggleMahram(true)"> 👩 Une femme</label>
     </div>
+  </div>
+
+  <!-- Mahram — visible si femme -->
+  <div class="conditional" id="cond_mahram">
+    <label>👨‍👧 Numéro WhatsApp du mahram <span class="required">*</span><span class="hint">Père, frère, oncle ou responsable de famille — obligatoire pour toute mise en contact</span></label>
+    <input type="tel" id="mahram_nom" placeholder="Prénom du mahram (ex : Mohamed, père)">
+    <input type="tel" id="mahram_tel" placeholder="Numéro WhatsApp du mahram" style="margin-top:8px">
   </div>
 
   <div class="field-row">
@@ -680,14 +687,13 @@
 
   <div class="field-row">
     <div class="field-group">
-      <label>🏝️ Île d'origine <span class="required">*</span></label>
-      <select id="ile">
-        <option value="">— Choisir —</option>
-        <option value="Grande Comore (Ngazidja)">Grande Comore (Ngazidja)</option>
-        <option value="Anjouan (Ndzuani)">Anjouan (Ndzuani)</option>
-        <option value="Mohéli (Mwali)">Mohéli (Mwali)</option>
-        <option value="Mayotte (Maore)">Mayotte (Maore)</option>
-      </select>
+      <label>🏝️ Île(s) d'origine <span class="required">*</span><span class="hint">Vous pouvez cocher plusieurs îles</span></label>
+      <div class="check-group">
+        <label><input type="checkbox" name="ile_origine" value="Grande Comore (Ngazidja)"> Grande Comore (Ngazidja)</label>
+        <label><input type="checkbox" name="ile_origine" value="Anjouan (Ndzuani)"> Anjouan (Ndzuani)</label>
+        <label><input type="checkbox" name="ile_origine" value="Mohéli (Mwali)"> Mohéli (Mwali)</label>
+        <label><input type="checkbox" name="ile_origine" value="Mayotte (Maore)"> Mayotte (Maore)</label>
+      </div>
     </div>
     <div class="field-group">
       <label>Région <span class="required">*</span></label>
@@ -938,6 +944,11 @@
     document.getElementById('cond_annonce').classList.toggle('visible', show);
   }
 
+  // Conditional: mahram si femme
+  function toggleMahram(show) {
+    document.getElementById('cond_mahram').classList.toggle('visible', show);
+  }
+
   // Conditional: marié
   function toggleMarie(sel) {
     document.getElementById('cond_marie').classList.toggle('visible', sel.value.includes('épouse'));
@@ -973,17 +984,21 @@
     erreur.classList.remove('visible');
 
     // Tous les champs texte/select obligatoires
-    const requis = ['prenom','nom','age','taille','whatsapp','ile','region','village','ville','statut','enfants','pro','admin','religion','qualites','criteres','acc_enfants','acc_etranger','acc_demenager','acc_papiers','acc_etudiant'];
+    const requis = ['prenom','nom','age','taille','whatsapp','region','village','ville','statut','enfants','pro','admin','religion','qualites','criteres','acc_enfants','acc_etranger','acc_demenager','acc_papiers','acc_etudiant'];
     let erreurs = false;
     requis.forEach(id => { if (!val(id)) { markInvalid(id); erreurs = true; } });
 
-    // Genre obligatoire
+    // Île origine : au moins une cochée
+    const ilesOrigine = [...document.querySelectorAll('input[name="ile_origine"]:checked')].map(c => c.value);
+    if (ilesOrigine.length === 0) erreurs = true;
+
+    // Mahram si femme
     const genre = document.querySelector('input[name="genre"]:checked')?.value;
     if (!genre) erreurs = true;
-
-    // Île souhaitée : au moins une case cochée
-    const ilesSouhaitees = [...document.querySelectorAll('input[name="ile_souhaitee"]:checked')].map(c => c.value);
-    if (ilesSouhaitees.length === 0) erreurs = true;
+    if (genre === 'Une femme') {
+      if (!val('mahram_nom')) { markInvalid('mahram_nom'); erreurs = true; }
+      if (!val('mahram_tel')) { markInvalid('mahram_tel'); erreurs = true; }
+    }
 
     // Type candidature obligatoire
     const typeCandidature = document.querySelector('input[name="type_candidature"]:checked')?.value;
@@ -1012,6 +1027,8 @@
     const refAnnonce = val('ref_annonce');
     const objetLine = typeCandidature + (refAnnonce ? ` → "${refAnnonce}"` : '');
 
+    const mahramInfo = genre === 'Une femme' ? `\n• Mahram : ${val('mahram_nom')} — ${val('mahram_tel')}` : '';
+
     const message =
 `💍 *NARILOLANÉ – Nouvelle candidature*
 ━━━━━━━━━━━━━━━━━━━━
@@ -1019,7 +1036,7 @@
 📌 *OBJET* : ${objetLine}
 
 👤 *IDENTITÉ* _(confidentiel)_
-• Genre : ${genre}
+• Genre : ${genre}${mahramInfo}
 • Prénom : ${val('prenom')}
 • Nom : ${val('nom')}
 • Âge : ${val('age')} ans
@@ -1027,7 +1044,7 @@
 • WhatsApp : ${val('whatsapp')}
 
 🏝️ *ORIGINE & LOCALISATION*
-• Île : ${val('ile')}
+• Île(s) : ${ilesOrigine.join(', ')}
 • Région : ${val('region') || 'Non précisé'}
 • Village : ${val('village') ? val('village') + villageConfid : 'Non précisé'}
 • Ville actuelle : ${val('ville')}
