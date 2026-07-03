@@ -652,16 +652,28 @@
   <div class="field-group">
     <label>👤 Vous êtes <span class="required">*</span></label>
     <div class="radio-group">
-      <label><input type="radio" name="genre" value="Un homme" onclick="toggleMahram(false)"> 🧔 Un homme</label>
-      <label><input type="radio" name="genre" value="Une femme" onclick="toggleMahram(true)"> 👩 Une femme</label>
+      <label><input type="radio" name="genre" value="Un homme" onclick="toggleGenreFields('homme')"> 🧔 Un homme</label>
+      <label><input type="radio" name="genre" value="Une femme" onclick="toggleGenreFields('femme')"> 👩 Une femme</label>
     </div>
   </div>
 
   <!-- Mahram — visible si femme -->
   <div class="conditional" id="cond_mahram">
-    <label>👨‍👧 Numéro WhatsApp du mahram <span class="required">*</span><span class="hint">Père, frère, oncle ou responsable de famille — obligatoire pour toute mise en contact</span></label>
-    <input type="tel" id="mahram_nom" placeholder="Prénom du mahram (ex : Mohamed, père)">
-    <input type="tel" id="mahram_tel" placeholder="Numéro WhatsApp du mahram" style="margin-top:8px">
+    <label>👨‍👧 Informations du mahram <span class="required">*</span><span class="hint">Père, frère, oncle ou responsable de famille — obligatoire pour toute mise en contact</span></label>
+    <input type="text" id="mahram_nom" placeholder="Prénom du mahram (ex : Mohamed)" style="margin-bottom:8px">
+    <input type="text" id="mahram_lien" placeholder="Lien familial (ex : père, frère, oncle…)" style="margin-bottom:8px">
+    <input type="tel" id="mahram_tel" placeholder="Numéro WhatsApp du mahram (ex : +33 6 12 34 56 78)">
+  </div>
+
+  <!-- Contact famille — visible si homme -->
+  <div class="conditional" id="cond_contact_homme">
+    <div class="check-group" style="margin-bottom:12px">
+      <label><input type="checkbox" id="serieux_check"> Je confirme être sérieux dans ma démarche et j'accepte de communiquer le contact d'un membre de ma famille, que l'équipe Narilolané pourra contacter en cas de doute.</label>
+    </div>
+    <label>👨‍👦 Contact d'un membre de votre famille <span class="required">*</span><span class="hint">Une personne de confiance que l'équipe peut contacter</span></label>
+    <input type="text" id="contact_nom" placeholder="Prénom (ex : Ahmed)" style="margin-bottom:8px">
+    <input type="text" id="contact_lien" placeholder="Lien avec vous (ex : père, frère, oncle…)" style="margin-bottom:8px">
+    <input type="tel" id="contact_tel" placeholder="Numéro WhatsApp (ex : +33 6 12 34 56 78)">
   </div>
 
   <div class="field-row">
@@ -944,9 +956,10 @@
     document.getElementById('cond_annonce').classList.toggle('visible', show);
   }
 
-  // Conditional: mahram si femme
-  function toggleMahram(show) {
-    document.getElementById('cond_mahram').classList.toggle('visible', show);
+  // Conditional: champs selon genre
+  function toggleGenreFields(genre) {
+    document.getElementById('cond_mahram').classList.toggle('visible', genre === 'femme');
+    document.getElementById('cond_contact_homme').classList.toggle('visible', genre === 'homme');
   }
 
   // Conditional: marié
@@ -997,7 +1010,14 @@
     if (!genre) erreurs = true;
     if (genre === 'Une femme') {
       if (!val('mahram_nom')) { markInvalid('mahram_nom'); erreurs = true; }
+      if (!val('mahram_lien')) { markInvalid('mahram_lien'); erreurs = true; }
       if (!val('mahram_tel')) { markInvalid('mahram_tel'); erreurs = true; }
+    }
+    if (genre === 'Un homme') {
+      if (!document.getElementById('serieux_check').checked) erreurs = true;
+      if (!val('contact_nom')) { markInvalid('contact_nom'); erreurs = true; }
+      if (!val('contact_lien')) { markInvalid('contact_lien'); erreurs = true; }
+      if (!val('contact_tel')) { markInvalid('contact_tel'); erreurs = true; }
     }
 
     // Type candidature obligatoire
@@ -1027,7 +1047,8 @@
     const refAnnonce = val('ref_annonce');
     const objetLine = typeCandidature + (refAnnonce ? ` → "${refAnnonce}"` : '');
 
-    const mahramInfo = genre === 'Une femme' ? `\n• Mahram : ${val('mahram_nom')} — ${val('mahram_tel')}` : '';
+    const mahramInfo = genre === 'Une femme' ? `\n• Mahram : ${val('mahram_nom')} (${val('mahram_lien')}) — ${val('mahram_tel')}` : '';
+    const contactInfo = genre === 'Un homme' ? `\n• Contact famille : ${val('contact_nom')} (${val('contact_lien')}) — ${val('contact_tel')}` : '';
 
     const message =
 `💍 *NARILOLANÉ – Nouvelle candidature*
@@ -1036,7 +1057,7 @@
 📌 *OBJET* : ${objetLine}
 
 👤 *IDENTITÉ* _(confidentiel)_
-• Genre : ${genre}${mahramInfo}
+• Genre : ${genre}${mahramInfo}${contactInfo}
 • Prénom : ${val('prenom')}
 • Nom : ${val('nom')}
 • Âge : ${val('age')} ans
@@ -1058,7 +1079,7 @@
 • Qualités : ${val('qualites')}
 
 💍 *RECHERCHE*
-• Île(s) souhaitée(s) : ${ilesSouhaitees.join(', ')}
+• Île(s) souhaitée(s) : ${[...document.querySelectorAll('input[name="ile_souhaitee"]:checked')].map(c=>c.value).join(', ') || 'Non précisé'}
 • Critères : ${val('criteres')}
 • Quelqu'un avec enfants : ${getPrec('acc_enfants','prec_enfants')}
 • Quelqu'un à l'étranger : ${getPrec('acc_etranger','prec_etranger')}
