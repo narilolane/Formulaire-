@@ -11,8 +11,9 @@
   :root {
     --bordeaux: #6B2D4E;
     --bordeaux-light: #7d3460;
-    --gold: #C9A84C;
-    --gold-light: #e0c070;
+    --gold: #6B2D4E;
+    --on-prune: #F5ECD8;
+    --gold-light: #8B4A6B;
     --beige: #F5ECD8;
     --beige-dark: #ecdfc4;
     --white: #fff;
@@ -52,7 +53,7 @@
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
-    color: var(--gold);
+    color: var(--on-prune);
     letter-spacing: 0.06em;
     font-weight: 600;
   }
@@ -81,7 +82,7 @@
 
   /* INFO BANNER */
   .banner {
-    background: var(--gold);
+    background: var(--beige-dark);
     padding: 14px 20px;
     text-align: center;
   }
@@ -138,7 +139,7 @@
   }
   .process h2 {
     font-family: 'Cormorant Garamond', serif;
-    color: var(--gold);
+    color: var(--on-prune);
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 14px;
@@ -162,7 +163,7 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 0.85rem;
     flex-shrink: 0;
-    color: var(--gold);
+    color: var(--on-prune);
   }
   .step-text {
     font-size: 0.82rem;
@@ -170,7 +171,7 @@
     line-height: 1.5;
     padding-top: 6px;
   }
-  .step-text strong { color: var(--gold); }
+  .step-text strong { color: var(--on-prune); }
 
   /* FORM */
   .form-container {
@@ -212,7 +213,7 @@
   select {
     width: 100%;
     background: var(--white);
-    border: 1.5px solid var(--beige-dark);
+    border: 1.5px solid rgba(107,45,78,0.35);
     border-radius: 8px;
     padding: 11px 14px;
     font-family: 'Jost', sans-serif;
@@ -243,7 +244,7 @@
     margin: 0;
     cursor: pointer;
     background: var(--white);
-    border: 1.5px solid var(--beige-dark);
+    border: 1.5px solid rgba(107,45,78,0.35);
     border-radius: 8px;
     padding: 10px 14px;
     transition: border-color 0.2s, background 0.2s;
@@ -283,7 +284,7 @@
   }
   .confid h3 {
     font-family: 'Cormorant Garamond', serif;
-    color: var(--gold);
+    color: var(--on-prune);
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 10px;
@@ -295,7 +296,7 @@
     display: flex; gap: 8px; align-items: flex-start;
     line-height: 1.5;
   }
-  .confid ul li span.dot { color: var(--gold); flex-shrink: 0; }
+  .confid ul li span.dot { color: var(--on-prune); flex-shrink: 0; }
 
   /* CHARTE */
   .charte {
@@ -402,7 +403,7 @@
   .mariages-titre {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.2rem;
-    color: var(--gold);
+    color: var(--on-prune);
     font-weight: 600;
     text-align: center;
     margin-bottom: 6px;
@@ -456,7 +457,7 @@
   .don-stats {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
-    color: var(--gold);
+    color: var(--on-prune);
     font-style: italic;
     margin-bottom: 10px;
   }
@@ -470,7 +471,7 @@
   /* DON */
   .don-btn {
     width: 100%;
-    background: #C0392B;
+    background: #0070BA;
     color: #fff;
     border: none;
     border-radius: 12px;
@@ -486,11 +487,17 @@
     margin-bottom: 12px;
     text-decoration: none;
     letter-spacing: 0.03em;
-    box-shadow: 0 4px 14px rgba(192,57,43,0.4);
+    box-shadow: 0 0 0 0 rgba(0,112,186,0.5);
+    animation: pulse-paypal 2s ease-in-out infinite;
     transition: background 0.2s, transform 0.1s;
   }
-  .don-btn:hover { background: #a93226; }
+  .don-btn:hover { background: #005ea6; }
   .don-btn:active { transform: scale(0.98); }
+  @keyframes pulse-paypal {
+    0% { box-shadow: 0 0 0 0 rgba(0,112,186,0.5); transform: scale(1); }
+    50% { box-shadow: 0 0 0 10px rgba(0,112,186,0); transform: scale(1.02); }
+    100% { box-shadow: 0 0 0 0 rgba(0,112,186,0); transform: scale(1); }
+  }
 
   /* SUBMIT */
   .submit-btn {
@@ -514,6 +521,184 @@
   .submit-btn:hover { background: #1db954; }
   .submit-btn:active { transform: scale(0.98); }
   .submit-btn svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+  /* ACCUEIL */
+  .accueil {
+    margin: 20px 16px 0;
+  }
+  .accueil-titre {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--bordeaux);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .accueil-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .accueil-btn {
+    border: none;
+    border-radius: 14px;
+    padding: 20px 12px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+    min-height: 130px;
+    transition: transform 0.1s;
+  }
+  .accueil-btn:active { transform: scale(0.98); }
+  .accueil-sous {
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .accueil-btn.deposer {
+    background: var(--bordeaux);
+    color: var(--on-prune);
+  }
+  .accueil-btn.deposer .accueil-sous { color: rgba(245,236,216,0.8); }
+  .accueil-btn.repondre {
+    background: var(--beige-dark);
+    color: var(--bordeaux);
+    border: 2px solid var(--bordeaux);
+  }
+  .accueil-btn.repondre .accueil-sous { color: rgba(74,20,40,0.7); }
+  .accueil-btn.contacter {
+    background: var(--white);
+    color: var(--bordeaux);
+    border: 2px solid var(--gold);
+  }
+  .accueil-btn.contacter .accueil-sous { color: var(--muted); }
+  .accueil-btn.don {
+    background: #C0392B;
+    color: #fff;
+    animation: pulse-don 2s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(192,57,43,0.5);
+  }
+  .accueil-btn.don .accueil-sous { color: rgba(255,255,255,0.85); }
+  @keyframes pulse-don {
+    0% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); transform: scale(1); }
+    50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); transform: scale(1.03); }
+    100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); transform: scale(1); }
+  }
+
+  /* RETOUR */
+  .retour-btn {
+    background: transparent;
+    border: none;
+    color: var(--bordeaux);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+
+  /* MODE BADGE */
+  .mode-badge {
+    background: #fdf7ed;
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--bordeaux);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* CONTACT */
+  .contact-bloc {
+    margin: 16px 16px 0;
+  }
+  .contact-toggle {
+    width: 100%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bordeaux);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .contact-content {
+    display: none;
+    margin-top: 12px;
+    text-align: center;
+  }
+  .contact-content.visible { display: block; }
+  .contact-sous {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .contact-card {
+    display: block;
+    text-decoration: none;
+    background: var(--white);
+    border: 1.5px solid rgba(107,45,78,0.35);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+  .contact-card.principal {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+  }
+  .contact-card:active { border-color: var(--gold); }
+  .contact-nom {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--on-prune);
+  }
+  .contact-role {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: rgba(245,236,216,0.7);
+  }
+  .contact-cta {
+    font-size: 0.85rem;
+    color: var(--beige);
+    margin-top: 4px;
+  }
+  .contact-nom-sec {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--bordeaux);
+  }
+  .contact-role-sec {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--muted);
+  }
+  .contact-cta-sec {
+    font-size: 0.82rem;
+    color: #25D366;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .contact-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 6px 0 10px;
+  }
 
   /* ERREUR */
   .error-msg {
@@ -563,15 +748,75 @@
 
 <!-- BANNER -->
 <div class="banner">
-  <p><strong>Salam alaykoum wa rahmatoullah</strong><br>Bienvenue — veuillez lire attentivement avant de remplir ce formulaire.</p>
+  <p><strong>Salam alaykoum wa rahmatoullah</strong><br>Karibu chez NARILOLANÉ, 1ère agence matrimoniale pensée pour la communauté comorienne et mahoraise 🇰🇲🇾🇹💍</p>
 </div>
 
-<!-- DUALITE -->
-<div class="dualite">
-  <h2>📢 Ce formulaire est pour vous si :</h2>
-  <div class="row"><span class="check">✅</span><span>Vous souhaitez <strong>publier votre annonce</strong> (être présenté·e à des candidats)</span></div>
-  <div class="row"><span class="check">✅</span><span>Vous souhaitez <strong>répondre à une annonce</strong> déjà publiée</span></div>
-  <div class="arrow">➡️ Dans les deux cas, remplissez ce même questionnaire.<br>Nous nous occupons du reste.</div>
+<!-- ACCUEIL : 3 boutons -->
+<div class="accueil" id="accueil">
+  <div class="accueil-titre">Que souhaitez-vous faire ?</div>
+  <div class="accueil-grid">
+  <button class="accueil-btn deposer" onclick="choisir('publier')">
+    📣 Déposer une annonce
+    <span class="accueil-sous">Être présenté·e à des candidats</span>
+  </button>
+  <button class="accueil-btn repondre" onclick="choisir('repondre')">
+    💬 Répondre à une annonce
+    <span class="accueil-sous">Vous avez vu une annonce qui vous intéresse</span>
+  </button>
+  <button class="accueil-btn contacter" onclick="choisir('contact')">
+    📲 Nous contacter
+    <span class="accueil-sous">Poser une question à l'équipe</span>
+  </button>
+  <button class="accueil-btn don" onclick="choisir('don')">
+    🤍 Soutenir Narilolané
+    <span class="accueil-sous">Faire un don pour aider la communauté</span>
+  </button>
+  </div>
+</div>
+
+<!-- CONTACT (affiché seulement si "Nous contacter") -->
+<div class="contact-bloc" id="contact-bloc" style="display:none">
+  <button class="retour-btn" onclick="retourAccueil()">← Retour</button>
+  <div class="contact-content visible">
+    <p class="contact-sous">Disponibles uniquement sur WhatsApp 🟢</p>
+
+    <a class="contact-card principal" href="https://wa.me/33613857373" target="_blank">
+      <div class="contact-nom">Nari <span class="contact-role">— contact principal</span></div>
+      <div class="contact-cta">💬 Envoyer un message</div>
+    </a>
+
+    <p class="contact-note">Si après plusieurs relances sans réponse :</p>
+
+    <a class="contact-card" href="https://wa.me/33769878319" target="_blank">
+      <div class="contact-nom-sec">Soleya <span class="contact-role-sec">— contact secondaire</span></div>
+      <div class="contact-cta-sec">💬 Envoyer un message</div>
+    </a>
+
+    <a class="contact-card" href="https://wa.me/33744120969" target="_blank">
+      <div class="contact-nom-sec">Mgn <span class="contact-role-sec">— contact secondaire</span></div>
+      <div class="contact-cta-sec">💬 Envoyer un message</div>
+    </a>
+  </div>
+</div>
+
+<!-- ECRAN DON -->
+<div class="contact-bloc" id="don-bloc-ecran" style="display:none">
+  <button class="retour-btn" onclick="retourAccueil()">← Retour à l'accueil</button>
+  <div class="don-bloc" style="margin-top:14px">
+    <div class="don-stats">+35 mariages · +3 naissances · alhamdoulillah 💍</div>
+    <p class="don-text">Narilolané existe grâce à la communauté, pour la communauté. Si cette démarche vous a touché(e) ou si vous souhaitez qu'elle continue d'aider d'autres frères et sœurs à se marier dans le halal, un don — même symbolique — fait une vraie différence.</p>
+    <a class="don-btn" href="https://www.paypal.me/Narilolane" target="_blank">
+      🤍 Faire un don via PayPal
+    </a>
+  </div>
+  <p style="text-align:center; font-size:0.82rem; color:var(--muted); margin-top:14px;">Une fois votre don effectué, vous pouvez revenir à l'accueil pour déposer ou répondre à une annonce 🤍</p>
+</div>
+
+<!-- BLOC QUESTIONNAIRE (caché jusqu'au choix) -->
+<div id="bloc-questionnaire" style="display:none">
+
+<div style="margin:16px 16px 0">
+  <button class="retour-btn" onclick="retourAccueil()">← Retour à l'accueil</button>
 </div>
 
 <!-- PROCESSUS -->
@@ -606,11 +851,7 @@
   <div class="eng-block">
     <div class="eng-title">🎯 À qui s'adresse ce service ?</div>
     <p>Narilolané s'adresse exclusivement aux membres de la communauté <strong>comorienne et mahoraise</strong>, animés d'une intention sincère de se marier, dans le respect de nos valeurs islamiques et traditionnelles.</p>
-    <p style="margin-top:8px; color:var(--muted); font-size:0.8rem;">Ce service n'est pas adapté aux personnes en phase d'exploration ou dont la priorité absolue est l'apparence physique.</p>
-  </div>
-  <div class="eng-block" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--beige-dark);">
-    <div class="eng-title">✦ Notre approche</div>
-    <p>Nous favorisons la <strong>compatibilité psychologique, éducative</strong> et le <strong>partage des valeurs</strong> plutôt que des critères superficiels. Nous vous invitons à adopter une démarche réaliste, sincère et ouverte.</p>
+    <p style="margin-top:10px">Chez Narilolané, ce sont les <strong>valeurs religieuses, culturelles et l'éducation</strong> qui priment sur l'apparence physique. Si le physique reste votre critère principal, d'autres plateformes seront plus adaptées à votre recherche.</p>
   </div>
 </div>
 
@@ -618,19 +859,15 @@
 <div class="form-container">
 
   <div class="sep"></div>
-  <div class="section-title">📋 Questionnaire de candidature</div>
+  <div class="section-title" id="questionnaire-titre">📋 Questionnaire de candidature</div>
 
-  <!-- CHOIX : annonce ou réponse -->
-  <div class="choix-bloc">
-    <div class="choix-titre">Je souhaite… <span class="required">*</span></div>
-    <div class="radio-group">
-      <label><input type="radio" name="type_candidature" value="Publier mon annonce (être présenté·e)" onclick="toggleAnnonce(false)"> 📣 Publier mon annonce (être présenté·e)</label>
-      <label><input type="radio" name="type_candidature" value="Répondre à une annonce déjà publiée" onclick="toggleAnnonce(true)"> 💬 Répondre à une annonce déjà publiée</label>
-    </div>
-    <div class="conditional" id="cond_annonce" style="margin-top:10px">
-      <label>📋 Nom ou référence de l'annonce <span class="required">*</span><span class="hint">Ex : Ylang, Jasmin, Annonce n°12…</span></label>
-      <input type="text" id="ref_annonce" placeholder="Indiquez le nom ou la référence de l'annonce">
-    </div>
+  <!-- Bandeau du mode choisi -->
+  <div class="mode-badge" id="mode-badge"></div>
+
+  <!-- Référence annonce (si répondre) -->
+  <div class="choix-bloc" id="cond_annonce" style="display:none">
+    <label>📋 Nom ou référence de l'annonce <span class="required">*</span><span class="hint">Ex : Ylang, Jasmin, Annonce n°12…</span></label>
+    <input type="text" id="ref_annonce" placeholder="Indiquez le nom ou la référence de l'annonce">
   </div>
 
   <div class="sep"></div>
@@ -767,17 +1004,30 @@
   <div class="field-row">
     <div class="field-group">
       <label>💼 Situation professionnelle <span class="required">*</span></label>
-      <input type="text" id="pro" placeholder="CDI, étudiant, auto-entrepreneur…">
+      <input type="text" id="pro" placeholder="Ex : Ingénieur, technicien, restauration (CDI), infirmier, étudiant…">
     </div>
     <div class="field-group">
       <label>📄 Situation administrative <span class="required">*</span></label>
-      <select id="admin">
+      <select id="admin" onchange="toggleComorienne(this)">
         <option value="">— Choisir —</option>
         <option value="Nationalité française">Nationalité française</option>
-        <option value="Titre de séjour">Titre de séjour</option>
-        <option value="Sans papiers">Sans papiers</option>
+        <option value="Nationalité comorienne">Nationalité comorienne</option>
         <option value="Nationalité du pays où je réside">Nationalité du pays où je réside</option>
       </select>
+      <div id="admin_comorienne_wrap" style="display:none; margin-top:8px">
+        <label style="margin-bottom:4px">Précisez votre situation <span class="required">*</span></label>
+        <select id="admin_comorienne">
+          <option value="">— Choisir —</option>
+          <option value="avec titre de séjour">Avec titre de séjour</option>
+          <option value="sans papiers">Sans papiers</option>
+          <option value="résident aux Comores">Résident aux Comores</option>
+          <option value="résident dans un autre pays">Résident dans un autre pays</option>
+        </select>
+      </div>
+      <div id="admin_pays_wrap" style="display:none; margin-top:8px">
+        <label style="margin-bottom:4px">Précisez le pays de résidence <span class="required">*</span></label>
+        <input type="text" id="admin_pays" placeholder="Ex : Canada, Sénégal, Émirats…">
+      </div>
     </div>
   </div>
 
@@ -788,7 +1038,7 @@
 
   <div class="field-group">
     <label>💡 Vos qualités & projet de vie <span class="required">*</span><span class="hint">Décrivez-vous sincèrement : vos qualités, vos valeurs, votre mode de vie et ce que vous souhaitez construire dans votre mariage</span></label>
-    <textarea id="qualites" placeholder="Ex : Je suis quelqu'un de calme, à l'écoute et pratiquant(e). Je souhaite construire une famille stable basée sur la dîn et la bienveillance. Dans mon quotidien…"></textarea>
+    <textarea id="qualites" placeholder="Je suis quelqu'un de…"></textarea>
   </div>
 
   <div class="sep"></div>
@@ -798,7 +1048,7 @@
 
   <div class="field-group">
     <label>💍 Ce que vous recherchez chez votre futur(e) conjoint(e) <span class="required">*</span><span class="hint">Décrivez les valeurs, la personnalité, la pratique religieuse attendues — puis la tranche d'âge</span></label>
-    <textarea id="criteres" placeholder="Ex : Je recherche quelqu'un de pratiquant(e), calme, honnête, avec une vision claire de la famille. Une personne mature, stable émotionnellement, qui partage mes valeurs. Tranche d'âge : entre 28 et 38 ans…"></textarea>
+    <textarea id="criteres" placeholder="Je recherche quelqu'un de…"></textarea>
   </div>
 
   <div class="field-group">
@@ -949,11 +1199,60 @@
   </div>
 
 </div>
+</div><!-- fin bloc-questionnaire -->
 
 <script>
-  // Conditional: répondre à une annonce
-  function toggleAnnonce(show) {
-    document.getElementById('cond_annonce').classList.toggle('visible', show);
+  let modeActuel = '';
+
+  // Choix depuis l'accueil
+  function choisir(mode) {
+    modeActuel = mode;
+    document.getElementById('accueil').style.display = 'none';
+
+    if (mode === 'contact') {
+      document.getElementById('contact-bloc').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      return;
+    }
+
+    if (mode === 'don') {
+      document.getElementById('don-bloc-ecran').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      return;
+    }
+
+    // Mode publier ou repondre → afficher le questionnaire
+    document.getElementById('bloc-questionnaire').style.display = 'block';
+    const badge = document.getElementById('mode-badge');
+    const condAnnonce = document.getElementById('cond_annonce');
+
+    if (mode === 'publier') {
+      badge.innerHTML = '📣 <strong>Vous déposez votre annonce</strong> — vous serez présenté·e à des candidats';
+      condAnnonce.style.display = 'none';
+    } else if (mode === 'repondre') {
+      badge.innerHTML = '💬 <strong>Vous répondez à une annonce</strong> déjà publiée';
+      condAnnonce.style.display = 'block';
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // Retour à l'accueil
+  function retourAccueil() {
+    document.getElementById('accueil').style.display = 'block';
+    document.getElementById('contact-bloc').style.display = 'none';
+    document.getElementById('don-bloc-ecran').style.display = 'none';
+    document.getElementById('bloc-questionnaire').style.display = 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // Conditional: sous-menu nationalité comorienne + pays de résidence
+  function toggleComorienne(sel) {
+    const sub = document.getElementById('admin_comorienne_wrap');
+    const pays = document.getElementById('admin_pays_wrap');
+    sub.style.display = sel.value === 'Nationalité comorienne' ? 'block' : 'none';
+    pays.style.display = sel.value === 'Nationalité du pays où je réside' ? 'block' : 'none';
+    if (sel.value !== 'Nationalité comorienne') document.getElementById('admin_comorienne').value = '';
+    if (sel.value !== 'Nationalité du pays où je réside') document.getElementById('admin_pays').value = '';
   }
 
   // Conditional: champs selon genre
@@ -1020,13 +1319,23 @@
       if (!val('contact_tel')) { markInvalid('contact_tel'); erreurs = true; }
     }
 
-    // Type candidature obligatoire
-    const typeCandidature = document.querySelector('input[name="type_candidature"]:checked')?.value;
-    if (!typeCandidature) erreurs = true;
+    // Type candidature depuis le mode choisi
+    const typeCandidature = modeActuel === 'publier'
+      ? 'Publier mon annonce (être présenté·e)'
+      : 'Répondre à une annonce déjà publiée';
 
     // Si répondre à une annonce, ref obligatoire
-    if (typeCandidature === 'Répondre à une annonce déjà publiée' && !val('ref_annonce')) {
+    if (modeActuel === 'repondre' && !val('ref_annonce')) {
       markInvalid('ref_annonce'); erreurs = true;
+    }
+
+    // Si nationalité comorienne, la sous-situation est obligatoire
+    if (val('admin') === 'Nationalité comorienne' && !val('admin_comorienne')) {
+      markInvalid('admin_comorienne'); erreurs = true;
+    }
+    // Si nationalité du pays de résidence, préciser le pays
+    if (val('admin') === 'Nationalité du pays où je réside' && !val('admin_pays')) {
+      markInvalid('admin_pays'); erreurs = true;
     }
 
     const charte = document.getElementById('charte_check').checked;
@@ -1074,7 +1383,11 @@
 • Statut matrimonial : ${val('statut')}${marieInfo}
 • Enfants : ${val('enfants')}
 • Situation pro : ${val('pro')}
-• Situation admin : ${val('admin')}
+• Situation admin : ${
+  val('admin') === 'Nationalité comorienne' ? val('admin') + ' (' + val('admin_comorienne') + ')' :
+  val('admin') === 'Nationalité du pays où je réside' ? val('admin') + ' (' + val('admin_pays') + ')' :
+  val('admin')
+}
 • Pratique religieuse : ${val('religion')}
 • Qualités : ${val('qualites')}
 
