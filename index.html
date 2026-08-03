@@ -586,6 +586,15 @@
     box-shadow: 0 0 0 0 rgba(192,57,43,0.5);
   }
   .accueil-btn.don .accueil-sous { color: rgba(255,255,255,0.85); }
+  .accueil-btn.reseaux-full {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--bordeaux);
+    color: var(--on-prune);
+    min-height: auto;
+    padding: 16px;
+  }
+  .accueil-btn.reseaux-full .accueil-sous { color: rgba(245,236,216,0.8); }
   @keyframes pulse-don {
     0% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); transform: scale(1); }
     50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); transform: scale(1.03); }
@@ -700,6 +709,44 @@
     margin: 6px 0 10px;
   }
 
+  /* RESEAUX */
+  .reseaux-info {
+    background: #fdf7ed;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .reseaux-titre {
+    font-weight: 600;
+    color: var(--bordeaux);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  .reseaux-sous {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .reseaux-liens {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .reseau-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 11px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #fff;
+  }
+  .reseau-btn.tiktok { background: #000; }
+  .reseau-btn.insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .reseau-btn.snap { background: #FFFC00; color: #000; }
+  .reseau-btn.facebook { background: #1877F2; }
+
   /* ERREUR */
   .error-msg {
     display: none;
@@ -772,6 +819,10 @@
     <span class="accueil-sous">Faire un don pour aider la communauté</span>
   </button>
   </div>
+  <button class="accueil-btn reseaux-full" onclick="choisir('reseaux')">
+    ✨ Rejoignez-nous sur nos réseaux
+    <span class="accueil-sous">Abonnez-vous pour ne rien manquer</span>
+  </button>
 </div>
 
 <!-- CONTACT (affiché seulement si "Nous contacter") -->
@@ -810,6 +861,21 @@
     </a>
   </div>
   <p style="text-align:center; font-size:0.82rem; color:var(--muted); margin-top:14px;">Une fois votre don effectué, vous pouvez revenir à l'accueil pour déposer ou répondre à une annonce 🤍</p>
+</div>
+
+<!-- ECRAN RESEAUX -->
+<div class="contact-bloc" id="reseaux-bloc-ecran" style="display:none">
+  <button class="retour-btn" onclick="retourAccueil()">← Retour à l'accueil</button>
+  <div style="text-align:center; margin-top:14px">
+    <div class="mariages-titre" style="color:var(--bordeaux)">✨ Rejoignez-nous</div>
+    <p class="contact-sous">Abonnez-vous pour suivre nos annonces et nos mariages célébrés 🤍</p>
+    <div class="reseaux-liens">
+      <a href="https://www.tiktok.com/@narilolanerencontrecomor" target="_blank" class="reseau-btn tiktok">🎵 TikTok</a>
+      <a href="https://www.instagram.com/narilolane" target="_blank" class="reseau-btn insta">📸 Instagram</a>
+      <a href="https://www.facebook.com/share/18FLSHwwEP/?mibextid=wwXIfr" target="_blank" class="reseau-btn facebook">👥 Facebook</a>
+      <a href="https://www.snapchat.com/add/narilolewakomor" target="_blank" class="reseau-btn snap">👻 Snapchat</a>
+    </div>
+  </div>
 </div>
 
 <!-- BLOC QUESTIONNAIRE (caché jusqu'au choix) -->
@@ -866,8 +932,18 @@
 
   <!-- Référence annonce (si répondre) -->
   <div class="choix-bloc" id="cond_annonce" style="display:none">
-    <label>📋 Nom ou référence de l'annonce <span class="required">*</span><span class="hint">Ex : Ylang, Jasmin, Annonce n°12…</span></label>
-    <input type="text" id="ref_annonce" placeholder="Indiquez le nom ou la référence de l'annonce">
+    <div class="reseaux-info">
+      <p class="reseaux-titre">📍 Où trouver les annonces ?</p>
+      <p class="reseaux-sous">Nos annonces sont publiées sur nos réseaux. Repérez celle qui vous intéresse et notez son nom ci-dessous 👇</p>
+      <div class="reseaux-liens">
+        <a href="https://www.tiktok.com/@narilolanerencontrecomor" target="_blank" class="reseau-btn tiktok">🎵 TikTok</a>
+        <a href="https://www.instagram.com/narilolane" target="_blank" class="reseau-btn insta">📸 Instagram</a>
+        <a href="https://www.facebook.com/share/18FLSHwwEP/?mibextid=wwXIfr" target="_blank" class="reseau-btn facebook">👥 Facebook</a>
+        <a href="https://www.snapchat.com/add/narilolewakomor" target="_blank" class="reseau-btn snap">👻 Snapchat</a>
+      </div>
+    </div>
+    <label style="margin-top:14px">📋 Nom ou référence de l'annonce <span class="required">*</span><span class="hint">Ex : Muscade, Ylang, Jasmin…</span></label>
+    <input type="text" id="ref_annonce" placeholder="Indiquez le nom de l'annonce">
   </div>
 
   <div class="sep"></div>
@@ -1221,6 +1297,12 @@
       return;
     }
 
+    if (mode === 'reseaux') {
+      document.getElementById('reseaux-bloc-ecran').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      return;
+    }
+
     // Mode publier ou repondre → afficher le questionnaire
     document.getElementById('bloc-questionnaire').style.display = 'block';
     const badge = document.getElementById('mode-badge');
@@ -1241,6 +1323,7 @@
     document.getElementById('accueil').style.display = 'block';
     document.getElementById('contact-bloc').style.display = 'none';
     document.getElementById('don-bloc-ecran').style.display = 'none';
+    document.getElementById('reseaux-bloc-ecran').style.display = 'none';
     document.getElementById('bloc-questionnaire').style.display = 'none';
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
