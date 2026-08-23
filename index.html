@@ -4,33 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NARILOLANÉ – Formulaire de candidature</title>
+<meta name="description" content="NARILOLANÉ — 1ère agence matrimoniale pour la communauté comorienne et mahoraise. Déposez ou répondez à une annonce en toute confidentialité.">
+<meta name="theme-color" content="#6B2D4E">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    /* Palette harmonisée */
     --bordeaux: #6B2D4E;
     --bordeaux-light: #7d3460;
-    --gold: #6B2D4E;
+    --bordeaux-dark: #571F3D;
+    --gold: #B08A2E;            /* doré profond — lisible sur fond clair */
+    --gold-bright: #C9A84C;     /* doré lumineux — accents sur fond bordeaux */
+    --gold-soft: rgba(201,168,76,0.18);
     --on-prune: #F5ECD8;
     --gold-light: #8B4A6B;
     --beige: #F5ECD8;
-    --beige-dark: #ecdfc4;
+    --beige-dark: #ECDFC4;
+    --cream: #FDF7ED;
     --white: #fff;
     --text: #2a0d18;
     --muted: #7a5060;
+    --danger: #C0392B;
+    --danger-soft: #FDE8E8;
+    --whatsapp: #25D366;
+    --whatsapp-dark: #1DB954;
+    --paypal: #0070BA;
+    --paypal-dark: #005EA6;
+    /* Rayons & ombres unifiés */
+    --r-sm: 8px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --shadow: 0 2px 12px rgba(107,45,78,0.08);
+    --border-soft: 1.5px solid rgba(107,45,78,0.3);
+    --content-width: 640px;
   }
+
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Jost', sans-serif;
     background: var(--beige);
     color: var(--text);
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Centrage harmonieux sur grand écran */
+  .banner p,
+  .accueil,
+  .contact-bloc,
+  .dualite,
+  .process,
+  .engagement,
+  .form-container,
+  #bloc-questionnaire > div[style] {
+    width: min(100% - 32px, var(--content-width));
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   /* HEADER */
   .header {
-    background: var(--bordeaux);
+    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
     text-align: center;
     padding: 36px 20px 28px;
     position: relative;
@@ -43,13 +82,11 @@
     transform: translateX(-50%);
     width: 300px; height: 300px;
     border-radius: 50%;
-    background: rgba(201,168,76,0.08);
+    background: var(--gold-soft);
+    opacity: 0.5;
     pointer-events: none;
   }
-  .header-ring {
-    font-size: 2rem;
-    margin-bottom: 8px;
-  }
+  .header-ring { font-size: 2rem; margin-bottom: 8px; }
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
@@ -68,10 +105,9 @@
   .header .devise {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    color: var(--beige);
+    color: var(--gold-bright);
     font-size: 0.85rem;
     margin-top: 2px;
-    opacity: 0.7;
     letter-spacing: 0.08em;
   }
   .header .flags {
@@ -85,6 +121,7 @@
     background: var(--beige-dark);
     padding: 14px 20px;
     text-align: center;
+    border-bottom: 1px solid rgba(176,138,46,0.25);
   }
   .banner p {
     font-size: 0.82rem;
@@ -97,10 +134,11 @@
   /* DUALITE BLOC */
   .dualite {
     background: var(--white);
-    margin: 20px 16px 0;
-    border-radius: 12px;
+    margin-top: 20px;
+    border-radius: var(--r-md);
     border-left: 4px solid var(--gold);
     padding: 18px 20px;
+    box-shadow: var(--shadow);
   }
   .dualite h2 {
     font-family: 'Cormorant Garamond', serif;
@@ -122,7 +160,7 @@
   .dualite .arrow {
     background: var(--bordeaux);
     color: var(--beige);
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 10px 14px;
     font-size: 0.82rem;
     text-align: center;
@@ -132,10 +170,11 @@
 
   /* PROCESSUS */
   .process {
-    margin: 16px 16px 0;
-    background: var(--bordeaux);
-    border-radius: 12px;
+    margin-top: 16px;
+    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
+    border-radius: var(--r-md);
     padding: 20px;
+    box-shadow: var(--shadow);
   }
   .process h2 {
     font-family: 'Cormorant Garamond', serif;
@@ -145,21 +184,13 @@
     margin-bottom: 14px;
     text-align: center;
   }
-  .process-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
+  .process-steps { display: flex; flex-direction: column; gap: 10px; }
+  .step { display: flex; align-items: flex-start; gap: 12px; }
   .step-icon {
     width: 32px; height: 32px;
     border-radius: 50%;
-    background: rgba(201,168,76,0.18);
-    border: 1.5px solid var(--gold);
+    background: var(--gold-soft);
+    border: 1.5px solid var(--gold-bright);
     display: flex; align-items: center; justify-content: center;
     font-size: 0.85rem;
     flex-shrink: 0;
@@ -174,9 +205,7 @@
   .step-text strong { color: var(--on-prune); }
 
   /* FORM */
-  .form-container {
-    margin: 20px 16px;
-  }
+  .form-container { margin-top: 20px; margin-bottom: 20px; }
   .section-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
@@ -187,9 +216,7 @@
     border-bottom: 1.5px solid var(--gold);
   }
 
-  .field-group {
-    margin-bottom: 18px;
-  }
+  .field-group { margin-bottom: 18px; }
   label {
     display: block;
     font-size: 0.8rem;
@@ -198,7 +225,7 @@
     margin-bottom: 6px;
     letter-spacing: 0.02em;
   }
-  label .required { color: var(--gold); margin-left: 2px; }
+  label .required { color: var(--gold); margin-left: 2px; font-weight: 700; }
   label .hint {
     font-weight: 300;
     color: var(--muted);
@@ -209,31 +236,35 @@
 
   input[type="text"],
   input[type="number"],
+  input[type="tel"],
   textarea,
   select {
     width: 100%;
     background: var(--white);
-    border: 1.5px solid rgba(107,45,78,0.35);
-    border-radius: 8px;
+    border: var(--border-soft);
+    border-radius: var(--r-sm);
     padding: 11px 14px;
     font-family: 'Jost', sans-serif;
     font-size: 0.88rem;
     color: var(--text);
     outline: none;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
     appearance: none;
   }
   input:focus, textarea:focus, select:focus {
     border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(176,138,46,0.15);
   }
   textarea { resize: vertical; min-height: 80px; }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236B2D4E' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
 
   /* RADIO / CHECKBOX GROUP */
-  .radio-group, .check-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .radio-group, .check-group { display: flex; flex-direction: column; gap: 8px; }
   .radio-group label, .check-group label {
     display: flex;
     align-items: center;
@@ -244,15 +275,15 @@
     margin: 0;
     cursor: pointer;
     background: var(--white);
-    border: 1.5px solid rgba(107,45,78,0.35);
-    border-radius: 8px;
+    border: var(--border-soft);
+    border-radius: var(--r-sm);
     padding: 10px 14px;
     transition: border-color 0.2s, background 0.2s;
   }
   .radio-group label:has(input:checked),
   .check-group label:has(input:checked) {
     border-color: var(--gold);
-    background: #fdf7ed;
+    background: var(--cream);
   }
   .radio-group input, .check-group input { accent-color: var(--bordeaux); }
 
@@ -261,26 +292,23 @@
     display: none;
     margin-top: 10px;
     padding: 12px;
-    background: #fdf7ed;
-    border-radius: 8px;
+    background: var(--cream);
+    border-radius: var(--r-sm);
     border-left: 3px solid var(--gold);
   }
   .conditional.visible { display: block; }
   .conditional label { color: var(--muted); }
 
   /* SEPARATOR */
-  .sep {
-    height: 1px;
-    background: var(--beige-dark);
-    margin: 24px 0;
-  }
+  .sep { height: 1px; background: var(--beige-dark); margin: 24px 0; }
 
   /* CONFIDENTIALITE */
   .confid {
-    background: var(--bordeaux);
-    border-radius: 12px;
+    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
+    border-radius: var(--r-md);
     padding: 18px 20px;
     margin-bottom: 20px;
+    box-shadow: var(--shadow);
   }
   .confid h3 {
     font-family: 'Cormorant Garamond', serif;
@@ -296,15 +324,16 @@
     display: flex; gap: 8px; align-items: flex-start;
     line-height: 1.5;
   }
-  .confid ul li span.dot { color: var(--on-prune); flex-shrink: 0; }
+  .confid ul li span.dot { color: var(--gold-bright); flex-shrink: 0; }
 
   /* CHARTE */
   .charte {
     background: var(--white);
     border: 1.5px solid var(--gold);
-    border-radius: 12px;
+    border-radius: var(--r-md);
     padding: 16px 18px;
     margin-bottom: 24px;
+    box-shadow: var(--shadow);
   }
   .charte label {
     display: flex;
@@ -320,32 +349,29 @@
 
   /* ENGAGEMENT */
   .engagement {
-    margin: 16px 16px 0;
+    margin-top: 16px;
     background: var(--white);
-    border-radius: 12px;
+    border-radius: var(--r-md);
     border-left: 4px solid var(--bordeaux);
     padding: 18px 20px;
+    box-shadow: var(--shadow);
   }
   .eng-block { font-size: 0.82rem; color: var(--text); line-height: 1.6; }
   .eng-title { font-weight: 600; color: var(--bordeaux); margin-bottom: 6px; font-size: 0.85rem; }
   .eng-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; padding: 4px 0; }
   .eng-row.avoid { color: var(--muted); font-style: italic; }
-  .eng-row.avoid::before { content: '•'; color: var(--bordeaux); flex-shrink: 0; }
+  .eng-row.avoid::before { content: '\2022'; color: var(--bordeaux); flex-shrink: 0; }
 
   /* CHOIX BLOC */
   .choix-bloc {
     background: var(--white);
     border: 2px solid var(--gold);
-    border-radius: 12px;
+    border-radius: var(--r-md);
     padding: 16px 18px;
     margin-bottom: 4px;
+    box-shadow: var(--shadow);
   }
-  .choix-titre {
-    font-weight: 600;
-    color: var(--bordeaux);
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
+  .choix-titre { font-weight: 600; color: var(--bordeaux); font-size: 0.9rem; margin-bottom: 10px; }
 
   /* SECTION BLOCK */
   .section-block {
@@ -380,9 +406,9 @@
     display: none;
     margin-top: 8px;
     width: 100%;
-    background: #fdf7ed;
+    background: var(--cream);
     border: 1.5px solid var(--gold);
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 10px 12px;
     font-family: 'Jost', sans-serif;
     font-size: 0.82rem;
@@ -395,10 +421,11 @@
 
   /* MARIAGES */
   .mariages-section {
-    background: var(--bordeaux);
-    border-radius: 12px;
+    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
+    border-radius: var(--r-md);
     padding: 20px;
     margin-bottom: 14px;
+    box-shadow: var(--shadow);
   }
   .mariages-titre {
     font-family: 'Cormorant Garamond', serif;
@@ -415,19 +442,15 @@
     font-style: italic;
     margin-bottom: 16px;
   }
-  .mariages-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  .mariages-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .mariage-slot { position: relative; }
   .mariage-slot.full { grid-column: 1 / -1; }
   .mariage-photo {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--r-sm);
+    border: 1px solid rgba(201,168,76,0.35);
     display: block;
   }
   .mariage-slot.full .mariage-photo { aspect-ratio: 16/9; }
@@ -435,7 +458,7 @@
   .mariage-placeholder {
     aspect-ratio: 1;
     border: 1.5px dashed rgba(201,168,76,0.4);
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -448,84 +471,67 @@
 
   /* DON BLOC */
   .don-bloc {
-    background: var(--bordeaux);
-    border-radius: 12px;
+    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
+    border-radius: var(--r-md);
     padding: 20px;
     margin-bottom: 14px;
     text-align: center;
+    box-shadow: var(--shadow);
   }
   .don-stats {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
-    color: var(--on-prune);
+    color: var(--gold-bright);
     font-style: italic;
     margin-bottom: 10px;
   }
   .don-text {
     font-size: 0.8rem;
-    color: rgba(245,236,216,0.8);
+    color: rgba(245,236,216,0.85);
     line-height: 1.7;
     margin-bottom: 14px;
   }
 
-  /* DON */
-  .don-btn {
+  /* BOUTONS D'ACTION — style unifié */
+  .don-btn, .submit-btn {
     width: 100%;
-    background: #0070BA;
-    color: #fff;
     border: none;
-    border-radius: 12px;
+    border-radius: var(--r-md);
     padding: 16px;
     font-family: 'Jost', sans-serif;
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 0.03em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 12px;
     text-decoration: none;
-    letter-spacing: 0.03em;
-    box-shadow: 0 0 0 0 rgba(0,112,186,0.5);
-    animation: pulse-paypal 2s ease-in-out infinite;
     transition: background 0.2s, transform 0.1s;
   }
-  .don-btn:hover { background: #005ea6; }
-  .don-btn:active { transform: scale(0.98); }
+  .don-btn:active, .submit-btn:active { transform: scale(0.98); }
+
+  .don-btn {
+    background: var(--paypal);
+    color: #fff;
+    margin-bottom: 12px;
+    box-shadow: 0 0 0 0 rgba(0,112,186,0.5);
+    animation: pulse-paypal 2s ease-in-out infinite;
+  }
+  .don-btn:hover { background: var(--paypal-dark); }
   @keyframes pulse-paypal {
     0% { box-shadow: 0 0 0 0 rgba(0,112,186,0.5); transform: scale(1); }
     50% { box-shadow: 0 0 0 10px rgba(0,112,186,0); transform: scale(1.02); }
     100% { box-shadow: 0 0 0 0 rgba(0,112,186,0); transform: scale(1); }
   }
 
-  /* SUBMIT */
-  .submit-btn {
-    width: 100%;
-    background: #25D366;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 16px;
-    font-family: 'Jost', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: background 0.2s, transform 0.1s;
-    letter-spacing: 0.02em;
-  }
-  .submit-btn:hover { background: #1db954; }
-  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn { background: var(--whatsapp); color: #fff; font-size: 1rem; }
+  .submit-btn:hover { background: var(--whatsapp-dark); }
   .submit-btn svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
 
   /* ACCUEIL */
-  .accueil {
-    margin: 20px 16px 0;
-  }
+  .accueil { margin-top: 20px; }
   .accueil-titre {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
@@ -534,14 +540,10 @@
     text-align: center;
     margin-bottom: 16px;
   }
-  .accueil-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
+  .accueil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .accueil-btn {
     border: none;
-    border-radius: 14px;
+    border-radius: var(--r-lg);
     padding: 20px 12px;
     font-family: 'Jost', sans-serif;
     font-size: 1rem;
@@ -554,18 +556,12 @@
     text-align: center;
     gap: 6px;
     min-height: 130px;
-    transition: transform 0.1s;
+    transition: transform 0.1s, box-shadow 0.2s;
+    box-shadow: var(--shadow);
   }
   .accueil-btn:active { transform: scale(0.98); }
-  .accueil-sous {
-    font-size: 0.78rem;
-    font-weight: 400;
-    opacity: 0.85;
-  }
-  .accueil-btn.deposer {
-    background: var(--bordeaux);
-    color: var(--on-prune);
-  }
+  .accueil-sous { font-size: 0.78rem; font-weight: 400; opacity: 0.85; }
+  .accueil-btn.deposer { background: var(--bordeaux); color: var(--on-prune); }
   .accueil-btn.deposer .accueil-sous { color: rgba(245,236,216,0.8); }
   .accueil-btn.repondre {
     background: var(--beige-dark);
@@ -580,7 +576,7 @@
   }
   .accueil-btn.contacter .accueil-sous { color: var(--muted); }
   .accueil-btn.don {
-    background: #C0392B;
+    background: var(--danger);
     color: #fff;
     animation: pulse-don 2s ease-in-out infinite;
     box-shadow: 0 0 0 0 rgba(192,57,43,0.5);
@@ -612,12 +608,13 @@
     cursor: pointer;
     padding: 4px 0;
   }
+  .retour-btn:hover { color: var(--gold); }
 
   /* MODE BADGE */
   .mode-badge {
-    background: #fdf7ed;
+    background: var(--cream);
     border-left: 3px solid var(--gold);
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 12px 14px;
     font-size: 0.85rem;
     color: var(--bordeaux);
@@ -626,14 +623,12 @@
   }
 
   /* CONTACT */
-  .contact-bloc {
-    margin: 16px 16px 0;
-  }
+  .contact-bloc { margin-top: 16px; }
   .contact-toggle {
     width: 100%;
     background: var(--white);
     border: 2px solid var(--gold);
-    border-radius: 12px;
+    border-radius: var(--r-md);
     padding: 14px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
@@ -645,103 +640,48 @@
     justify-content: center;
     gap: 8px;
   }
-  .contact-content {
-    display: none;
-    margin-top: 12px;
-    text-align: center;
-  }
+  .contact-content { display: none; margin-top: 12px; text-align: center; }
   .contact-content.visible { display: block; }
-  .contact-sous {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
+  .contact-sous { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
   .contact-card {
     display: block;
     text-decoration: none;
     background: var(--white);
-    border: 1.5px solid rgba(107,45,78,0.35);
-    border-radius: 10px;
+    border: var(--border-soft);
+    border-radius: var(--r-md);
     padding: 12px;
     margin-bottom: 10px;
     transition: border-color 0.2s;
+    box-shadow: var(--shadow);
   }
-  .contact-card.principal {
-    background: var(--bordeaux);
-    border-color: var(--bordeaux);
-  }
-  .contact-card:active { border-color: var(--gold); }
-  .contact-nom {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--on-prune);
-  }
-  .contact-role {
-    font-size: 0.72rem;
-    font-weight: 400;
-    color: rgba(245,236,216,0.7);
-  }
-  .contact-cta {
-    font-size: 0.85rem;
-    color: var(--beige);
-    margin-top: 4px;
-  }
-  .contact-nom-sec {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--bordeaux);
-  }
-  .contact-role-sec {
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--muted);
-  }
-  .contact-cta-sec {
-    font-size: 0.82rem;
-    color: #25D366;
-    margin-top: 4px;
-    font-weight: 500;
-  }
-  .contact-note {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-style: italic;
-    margin: 6px 0 10px;
-  }
+  .contact-card.principal { background: var(--bordeaux); border-color: var(--bordeaux); }
+  .contact-card:active, .contact-card:hover { border-color: var(--gold); }
+  .contact-nom { font-size: 0.95rem; font-weight: 600; color: var(--on-prune); }
+  .contact-role { font-size: 0.72rem; font-weight: 400; color: rgba(245,236,216,0.7); }
+  .contact-cta { font-size: 0.85rem; color: var(--beige); margin-top: 4px; }
+  .contact-nom-sec { font-size: 0.9rem; font-weight: 600; color: var(--bordeaux); }
+  .contact-role-sec { font-size: 0.7rem; font-weight: 400; color: var(--muted); }
+  .contact-cta-sec { font-size: 0.82rem; color: var(--whatsapp); margin-top: 4px; font-weight: 500; }
+  .contact-note { font-size: 0.75rem; color: var(--muted); font-style: italic; margin: 6px 0 10px; }
 
   /* RESEAUX */
-  .reseaux-info {
-    background: #fdf7ed;
-    border-radius: 10px;
-    padding: 14px;
-  }
-  .reseaux-titre {
-    font-weight: 600;
-    color: var(--bordeaux);
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-  }
-  .reseaux-sous {
-    font-size: 0.8rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-  .reseaux-liens {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .reseaux-info { background: var(--cream); border-radius: var(--r-md); padding: 14px; }
+  .reseaux-titre { font-weight: 600; color: var(--bordeaux); font-size: 0.9rem; margin-bottom: 6px; }
+  .reseaux-sous { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin-bottom: 12px; }
+  .reseaux-liens { display: flex; flex-direction: column; gap: 8px; }
   .reseau-btn {
     display: block;
     text-align: center;
     text-decoration: none;
     padding: 11px;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     font-weight: 600;
     font-size: 0.85rem;
     color: #fff;
+    transition: opacity 0.2s, transform 0.1s;
   }
+  .reseau-btn:hover { opacity: 0.9; }
+  .reseau-btn:active { transform: scale(0.98); }
   .reseau-btn.tiktok { background: #000; }
   .reseau-btn.insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
   .reseau-btn.snap { background: #FFFC00; color: #000; }
@@ -750,9 +690,9 @@
   /* ERREUR */
   .error-msg {
     display: none;
-    background: #fde8e8;
+    background: var(--danger-soft);
     border: 1.5px solid #e05555;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
     padding: 12px 16px;
     font-size: 0.82rem;
     color: #b91c1c;
@@ -776,9 +716,264 @@
     font-style: italic;
   }
 
-  /* Highlight invalide */
+
+  /* ===== FLUIDITÉ : transition douce entre les écrans ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #accueil, #contact-bloc, #don-bloc-ecran, #reseaux-bloc-ecran, #bloc-questionnaire {
+    animation: fadeUp 0.4s ease both;
+  }
+  .accueil-btn, .contact-card, .reseau-btn, .don-btn, .submit-btn {
+    transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  }
+  .accueil-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(107,45,78,0.18); }
+  .conditional, .prec-field { animation: fadeUp 0.3s ease both; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ===== CONTACT FLOTTANT (survol / clic) ===== */
+  .fab-contact {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Jost', sans-serif;
+  }
+  .fab-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bordeaux);
+    color: var(--on-prune);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(107,45,78,0.35);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .fab-contact:hover .fab-btn,
+  .fab-contact.open .fab-btn {
+    background: var(--bordeaux-dark);
+    transform: scale(1.06);
+  }
+  .fab-panel {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 250px;
+    background: var(--white);
+    border: 1.5px solid var(--gold);
+    border-radius: var(--r-md);
+    padding: 14px;
+    box-shadow: 0 10px 30px rgba(107,45,78,0.25);
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .fab-contact:hover .fab-panel,
+  .fab-contact:focus-within .fab-panel,
+  .fab-contact.open .fab-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .fab-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bordeaux);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .fab-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .fab-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: var(--cream);
+    border: 1px solid rgba(107,45,78,0.2);
+    border-radius: var(--r-sm);
+    padding: 9px 12px;
+    margin-bottom: 8px;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .fab-link:last-child { margin-bottom: 0; }
+  .fab-link:hover { border-color: var(--whatsapp); transform: translateX(2px); }
+  .fab-link .wa-dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--whatsapp);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .fab-link .fab-nom { font-size: 0.85rem; font-weight: 600; color: var(--bordeaux); }
+  .fab-link .fab-role { font-size: 0.68rem; color: var(--muted); }
+  .fab-link.principal { background: var(--bordeaux); border-color: var(--bordeaux); }
+  .fab-link.principal .fab-nom { color: var(--on-prune); }
+  .fab-link.principal .fab-role { color: rgba(245,236,216,0.7); }
+  .fab-link.principal:hover { border-color: var(--gold-bright); }
+  @media (max-width: 480px) {
+    .fab-contact { bottom: 16px; right: 16px; }
+    .fab-panel { width: min(250px, calc(100vw - 32px)); }
+  }
+
+
+  /* ===== QUESTIONNAIRE MULTI-ÉTAPES ===== */
+  .steps-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .steps-progress::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 26px; right: 26px;
+    height: 2px;
+    background: var(--beige-dark);
+    z-index: 0;
+  }
+  .sp-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+    flex: 1;
+    cursor: default;
+  }
+  .sp-item.done { cursor: pointer; }
+  .sp-dot {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--beige-dark);
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .sp-item.active .sp-dot {
+    background: var(--bordeaux);
+    border-color: var(--bordeaux);
+    color: var(--on-prune);
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px rgba(107,45,78,0.15);
+  }
+  .sp-item.done .sp-dot { background: var(--gold); border-color: var(--gold); color: #fff; }
+  .sp-label { font-size: 0.62rem; color: var(--muted); font-weight: 500; text-align: center; }
+  .sp-item.active .sp-label { color: var(--bordeaux); font-weight: 600; }
+  @media (max-width: 480px) {
+    .sp-label { display: none; }
+    .steps-progress::before { left: 16px; right: 16px; }
+  }
+
+  .form-step { display: none; }
+  .form-step.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .nav-btn {
+    border: none;
+    border-radius: var(--r-md);
+    padding: 13px 22px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  }
+  .nav-btn:active { transform: scale(0.97); }
+  .nav-btn.next { background: var(--bordeaux); color: var(--on-prune); }
+  .nav-btn.next:hover { background: var(--bordeaux-dark); }
+  .nav-btn.prev { background: transparent; color: var(--bordeaux); border: 1.5px solid rgba(107,45,78,0.35); }
+  .nav-btn.prev:hover { border-color: var(--bordeaux); }
+
+  .step-error {
+    display: none;
+    background: var(--danger-soft);
+    border: 1.5px solid #e05555;
+    border-radius: var(--r-sm);
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    color: #b91c1c;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+  .step-error.visible { display: block; animation: fadeUp 0.3s ease both; }
+
+  /* Résumé final */
+  .resume-intro { font-size: 0.82rem; color: var(--muted); margin-bottom: 14px; }
+  .res-bloc {
+    background: var(--white);
+    border: 1.5px solid rgba(107,45,78,0.2);
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    animation: fadeUp 0.35s ease both;
+  }
+  .res-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--bordeaux);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--beige-dark);
+    padding-bottom: 6px;
+  }
+  .res-edit {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .res-edit:hover { background: var(--gold); color: #fff; }
+  .res-row {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+    font-size: 0.82rem;
+    border-bottom: 1px dashed rgba(107,45,78,0.08);
+  }
+  .res-row:last-child { border-bottom: none; }
+  .res-label { color: var(--muted); flex-shrink: 0; min-width: 110px; font-weight: 500; }
+  .res-val { color: var(--text); word-break: break-word; white-space: pre-wrap; }
+
+  /* Champ invalide */
   input.invalid, textarea.invalid, select.invalid {
     border-color: #e05555 !important;
+    box-shadow: 0 0 0 3px rgba(224,85,85,0.12) !important;
   }
 </style>
 </head>
@@ -930,6 +1125,18 @@
   <!-- Bandeau du mode choisi -->
   <div class="mode-badge" id="mode-badge"></div>
 
+  <!-- PROGRESSION -->
+  <div class="steps-progress" id="steps-progress">
+    <div class="sp-item active" data-sp="1"><div class="sp-dot">1</div><div class="sp-label">Identité</div></div>
+    <div class="sp-item" data-sp="2"><div class="sp-dot">2</div><div class="sp-label">Origine</div></div>
+    <div class="sp-item" data-sp="3"><div class="sp-dot">3</div><div class="sp-label">Situation</div></div>
+    <div class="sp-item" data-sp="4"><div class="sp-dot">4</div><div class="sp-label">Recherche</div></div>
+    <div class="sp-item" data-sp="5"><div class="sp-dot">5</div><div class="sp-label">Résumé</div></div>
+  </div>
+
+  <!-- ÉTAPE 1 : IDENTITÉ -->
+  <div class="form-step active" id="step-1">
+
   <!-- Référence annonce (si répondre) -->
   <div class="choix-bloc" id="cond_annonce" style="display:none">
     <div class="reseaux-info">
@@ -1005,9 +1212,15 @@
     <input type="tel" id="whatsapp" placeholder="Ex : +33 6 12 34 56 78">
   </div>
 
-  <div class="sep"></div>
+    <div class="step-error" id="err-1">⚠️ Veuillez compléter les champs marqués d'une * avant de continuer.</div>
+    <div class="step-nav">
+      <span></span>
+      <button class="nav-btn next" onclick="etapeSuivante()">Suivant →</button>
+    </div>
+  </div>
 
-  <!-- SECTION 2 : ORIGINE -->
+  <!-- ÉTAPE 2 : ORIGINE -->
+  <div class="form-step" id="step-2">
   <div class="section-block">Origine & localisation</div>
 
   <div class="field-row">
@@ -1041,9 +1254,15 @@
     <label><input type="checkbox" id="village_confid"> Je souhaite que mon village reste confidentiel et n'apparaisse pas sur mon annonce</label>
   </div>
 
-  <div class="sep"></div>
+    <div class="step-error" id="err-2">⚠️ Veuillez compléter les champs marqués d'une * avant de continuer.</div>
+    <div class="step-nav">
+      <button class="nav-btn prev" onclick="etapePrecedente()">← Précédent</button>
+      <button class="nav-btn next" onclick="etapeSuivante()">Suivant →</button>
+    </div>
+  </div>
 
-  <!-- SECTION 3 : SITUATION -->
+  <!-- ÉTAPE 3 : SITUATION -->
+  <div class="form-step" id="step-3">
   <div class="section-block">Situation personnelle <span class="section-confid">actuelle</span></div>
 
   <div class="field-row">
@@ -1117,9 +1336,15 @@
     <textarea id="qualites" placeholder="Je suis quelqu'un de…"></textarea>
   </div>
 
-  <div class="sep"></div>
+    <div class="step-error" id="err-3">⚠️ Veuillez compléter les champs marqués d'une * avant de continuer.</div>
+    <div class="step-nav">
+      <button class="nav-btn prev" onclick="etapePrecedente()">← Précédent</button>
+      <button class="nav-btn next" onclick="etapeSuivante()">Suivant →</button>
+    </div>
+  </div>
 
-  <!-- SECTION 4 : RECHERCHE -->
+  <!-- ÉTAPE 4 : RECHERCHE -->
+  <div class="form-step" id="step-4">
   <div class="section-block">Ce que vous recherchez</div>
 
   <div class="field-group">
@@ -1195,7 +1420,20 @@
     <textarea id="prec_etudiant" class="prec-field" placeholder="Précisez quelle situation ?"></textarea>
   </div>
 
-  <div class="sep"></div>
+    <div class="step-error" id="err-4">⚠️ Veuillez compléter les champs marqués d'une * avant de continuer.</div>
+    <div class="step-nav">
+      <button class="nav-btn prev" onclick="etapePrecedente()">← Précédent</button>
+      <button class="nav-btn next" onclick="etapeSuivante()">Voir le résumé →</button>
+    </div>
+  </div>
+
+  <!-- ÉTAPE 5 : RÉSUMÉ & ENVOI -->
+  <div class="form-step" id="step-5">
+    <div class="section-block">✅ Résumé de votre candidature</div>
+    <p class="resume-intro">Vérifiez vos informations avant l'envoi — vous pouvez modifier chaque partie.</p>
+    <div id="resume-content"></div>
+
+    <div class="sep"></div>
 
   <!-- CONFIDENTIALITE -->
   <div class="confid">
@@ -1236,6 +1474,12 @@
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Envoyer ma candidature sur WhatsApp
   </button>
+
+    <div class="step-nav" style="margin-top:14px">
+      <button class="nav-btn prev" onclick="etapePrecedente()">← Précédent</button>
+      <span></span>
+    </div>
+  </div><!-- fin étape 5 -->
 
   <!-- SECTION MARIAGES -->
   <div class="mariages-section">
@@ -1279,6 +1523,7 @@
 
 <script>
   let modeActuel = '';
+  let etapeActuelle = 1;
 
   // Choix depuis l'accueil
   function choisir(mode) {
@@ -1315,6 +1560,7 @@
       badge.innerHTML = '💬 <strong>Vous répondez à une annonce</strong> déjà publiée';
       condAnnonce.style.display = 'block';
     }
+    allerEtape(1);
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
@@ -1372,6 +1618,137 @@
 
   function clearInvalid() { document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid')); }
   function markInvalid(id) { const el = document.getElementById(id); if (el) el.classList.add('invalid'); }
+
+
+  // ===== QUESTIONNAIRE MULTI-ÉTAPES =====
+  function allerEtape(n) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    const step = document.getElementById('step-' + n);
+    if (step) step.classList.add('active');
+    document.querySelectorAll('.sp-item').forEach(it => {
+      const i = parseInt(it.dataset.sp);
+      it.classList.toggle('active', i === n);
+      it.classList.toggle('done', i < n);
+    });
+    if (n === 5) construireResume();
+    etapeActuelle = n;
+    const prog = document.getElementById('steps-progress');
+    if (prog) prog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function etapeSuivante() {
+    if (validerEtape(etapeActuelle)) allerEtape(etapeActuelle + 1);
+  }
+
+  function etapePrecedente() {
+    if (etapeActuelle > 1) allerEtape(etapeActuelle - 1);
+  }
+
+  // Revenir sur une étape déjà complétée en cliquant sur son point
+  document.querySelectorAll('.sp-item').forEach(it => {
+    it.addEventListener('click', () => {
+      const i = parseInt(it.dataset.sp);
+      if (i < etapeActuelle) allerEtape(i);
+    });
+  });
+
+  function validerEtape(n) {
+    clearInvalid();
+    const err = document.getElementById('err-' + n);
+    if (err) err.classList.remove('visible');
+    let ok = true;
+    const need = id => { if (!val(id)) { markInvalid(id); ok = false; } };
+
+    if (n === 1) {
+      if (modeActuel === 'repondre' && !val('ref_annonce')) { markInvalid('ref_annonce'); ok = false; }
+      ['prenom','nom','age','taille','whatsapp'].forEach(need);
+      const genre = document.querySelector('input[name="genre"]:checked')?.value;
+      if (!genre) ok = false;
+      if (genre === 'Une femme') ['mahram_nom','mahram_lien','mahram_tel'].forEach(need);
+      if (genre === 'Un homme') {
+        if (!document.getElementById('serieux_check').checked) ok = false;
+        ['contact_nom','contact_lien','contact_tel'].forEach(need);
+      }
+    }
+    if (n === 2) {
+      ['region','village','ville'].forEach(need);
+      if (document.querySelectorAll('input[name="ile_origine"]:checked').length === 0) ok = false;
+    }
+    if (n === 3) {
+      ['statut','enfants','pro','admin','religion','qualites'].forEach(need);
+      if (val('statut').includes('épouse') && !document.querySelector('input[name="marie_info"]:checked')) ok = false;
+      if (val('admin') === 'Nationalité comorienne' && !val('admin_comorienne')) { markInvalid('admin_comorienne'); ok = false; }
+      if (val('admin') === 'Nationalité du pays où je réside' && !val('admin_pays')) { markInvalid('admin_pays'); ok = false; }
+    }
+    if (n === 4) {
+      ['criteres','acc_enfants','acc_etranger','acc_demenager','acc_papiers','acc_etudiant'].forEach(need);
+      if (document.querySelectorAll('input[name="ile_souhaitee"]:checked').length === 0) ok = false;
+    }
+
+    if (!ok && err) {
+      err.classList.add('visible');
+      err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return ok;
+  }
+
+  // ===== RÉSUMÉ =====
+  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  function ligne(label, valeur) {
+    return valeur ? `<div class="res-row"><span class="res-label">${label}</span><span class="res-val">${esc(valeur)}</span></div>` : '';
+  }
+
+  function construireResume() {
+    const genre = document.querySelector('input[name="genre"]:checked')?.value || '';
+    const ilesO = [...document.querySelectorAll('input[name="ile_origine"]:checked')].map(c => c.value).join(', ');
+    const ilesS = [...document.querySelectorAll('input[name="ile_souhaitee"]:checked')].map(c => c.value).join(', ');
+    const marieInfo = val('statut').includes('épouse')
+      ? (document.querySelector('input[name="marie_info"]:checked')?.value || '')
+      : '';
+    const adminTxt =
+      val('admin') === 'Nationalité comorienne' ? val('admin') + ' (' + val('admin_comorienne') + ')' :
+      val('admin') === 'Nationalité du pays où je réside' ? val('admin') + ' (' + val('admin_pays') + ')' :
+      val('admin');
+    const villageTxt = val('village') + (document.getElementById('village_confid').checked ? ' (confidentiel)' : '');
+
+    const bloc = (titre, etape, contenu) =>
+      `<div class="res-bloc"><div class="res-head"><span>${titre}</span><button class="res-edit" onclick="allerEtape(${etape})">✏️ Modifier</button></div>${contenu}</div>`;
+
+    let h = '';
+    if (modeActuel === 'repondre') h += bloc('📋 Annonce', 1, ligne('Référence', val('ref_annonce')));
+    h += bloc('👤 Identité', 1,
+      ligne('Genre', genre) +
+      ligne('Prénom', val('prenom')) +
+      ligne('Nom', val('nom')) +
+      (genre === 'Une femme' ? ligne('Mahram', val('mahram_nom') + ' (' + val('mahram_lien') + ') — ' + val('mahram_tel')) : '') +
+      (genre === 'Un homme' ? ligne('Contact famille', val('contact_nom') + ' (' + val('contact_lien') + ') — ' + val('contact_tel')) : '') +
+      ligne('Âge', val('age') ? val('age') + ' ans' : '') +
+      ligne('Taille', val('taille')) +
+      ligne('WhatsApp', val('whatsapp')));
+    h += bloc('🏝️ Origine & localisation', 2,
+      ligne('Île(s) d\'origine', ilesO) +
+      ligne('Région', val('region')) +
+      ligne('Village', villageTxt) +
+      ligne('Ville actuelle', val('ville')));
+    h += bloc('💼 Situation personnelle', 3,
+      ligne('Statut matrimonial', val('statut')) +
+      ligne('Épouse informée', marieInfo) +
+      ligne('Enfants', val('enfants')) +
+      ligne('Profession', val('pro')) +
+      ligne('Administratif', adminTxt) +
+      ligne('Pratique religieuse', val('religion')) +
+      ligne('Qualités & projet', val('qualites')));
+    h += bloc('💍 Ce que vous recherchez', 4,
+      ligne('Île(s) souhaitée(s)', ilesS) +
+      ligne('Critères', val('criteres')) +
+      ligne('Avec enfants', getPrec('acc_enfants','prec_enfants')) +
+      ligne('À l\'étranger', getPrec('acc_etranger','prec_etranger')) +
+      ligne('Prêt(e) à déménager', getPrec('acc_demenager','prec_demenager')) +
+      ligne('Sans papiers', getPrec('acc_papiers','prec_papiers')) +
+      ligne('Étudiant accepté', getPrec('acc_etudiant','prec_etudiant')));
+
+    document.getElementById('resume-content').innerHTML = h;
+  }
 
   function envoyerWhatsApp() {
     clearInvalid();
@@ -1490,5 +1867,39 @@
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(message)}`, '_blank');
   }
 </script>
+
+<!-- CONTACT FLOTTANT -->
+<div class="fab-contact" id="fab-contact">
+  <div class="fab-panel">
+    <div class="fab-title">📲 Nous contacter</div>
+    <div class="fab-sub">Disponibles uniquement sur WhatsApp 🟢</div>
+    <a class="fab-link principal" href="https://wa.me/33613857373" target="_blank">
+      <span class="wa-dot">💬</span>
+      <span><span class="fab-nom">Nari</span><br><span class="fab-role">Contact principal</span></span>
+    </a>
+    <a class="fab-link" href="https://wa.me/33769878319" target="_blank">
+      <span class="wa-dot">💬</span>
+      <span><span class="fab-nom">Soleya</span><br><span class="fab-role">Contact secondaire</span></span>
+    </a>
+    <a class="fab-link" href="https://wa.me/33744120969" target="_blank">
+      <span class="wa-dot">💬</span>
+      <span><span class="fab-nom">Mgn</span><br><span class="fab-role">Contact secondaire</span></span>
+    </a>
+  </div>
+  <button class="fab-btn" onclick="toggleFab(event)" aria-label="Nous contacter">📲</button>
+</div>
+
+<script>
+  // Contact flottant : clic pour mobile (le survol suffit sur ordinateur)
+  function toggleFab(e) {
+    e.stopPropagation();
+    document.getElementById('fab-contact').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const fab = document.getElementById('fab-contact');
+    if (!fab.contains(e.target)) fab.classList.remove('open');
+  });
+</script>
+
 </body>
 </html>
