@@ -14,20 +14,20 @@
 
   :root {
     /* Palette harmonisée */
-    --bordeaux: #6B2D4E;
-    --bordeaux-light: #7d3460;
-    --bordeaux-dark: #571F3D;
-    --gold: #B08A2E;            /* doré profond — lisible sur fond clair */
-    --gold-bright: #C9A84C;     /* doré lumineux — accents sur fond bordeaux */
-    --gold-soft: rgba(201,168,76,0.18);
-    --on-prune: #F5ECD8;
-    --gold-light: #8B4A6B;
-    --beige: #F5ECD8;
-    --beige-dark: #ECDFC4;
-    --cream: #FDF7ED;
+    --bordeaux: #7A2348;        /* prune plus riche et vibrant */
+    --bordeaux-light: #9A2F5C;
+    --bordeaux-dark: #5E1838;
+    --gold: #B8902F;            /* doré profond — lisible sur fond clair */
+    --gold-bright: #E3C05A;     /* doré champagne lumineux — accents sur fond bordeaux */
+    --gold-soft: rgba(227,192,90,0.22);
+    --on-prune: #FBF3DF;
+    --gold-light: #A23D6B;
+    --beige: #FBF1DB;           /* crème plus chaleureux */
+    --beige-dark: #F0E2C4;
+    --cream: #FEF9EF;
     --white: #fff;
-    --text: #2a0d18;
-    --muted: #7a5060;
+    --text: #2E0E1C;
+    --muted: #8A5468;
     --danger: #C0392B;
     --danger-soft: #FDE8E8;
     --whatsapp: #25D366;
@@ -69,30 +69,20 @@
 
   /* HEADER */
   .header {
-    background: linear-gradient(180deg, var(--bordeaux) 0%, var(--bordeaux-dark) 100%);
+    background: linear-gradient(165deg, var(--bordeaux-light) 0%, var(--bordeaux) 45%, var(--bordeaux-dark) 100%);
     text-align: center;
     padding: 36px 20px 28px;
     position: relative;
     overflow: hidden;
   }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -40px; left: 50%;
-    transform: translateX(-50%);
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: var(--gold-soft);
-    opacity: 0.5;
-    pointer-events: none;
-  }
   .header-ring { font-size: 2rem; margin-bottom: 8px; }
   .header h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
-    color: var(--on-prune);
+    color: var(--gold-bright);
     letter-spacing: 0.06em;
     font-weight: 600;
+    text-shadow: 0 1px 12px rgba(227,192,90,0.25);
   }
   .header .subtitle {
     font-family: 'Cormorant Garamond', serif;
@@ -561,6 +551,22 @@
   }
   .accueil-btn:active { transform: scale(0.98); }
   .accueil-sous { font-size: 0.78rem; font-weight: 400; opacity: 0.85; }
+  /* Boutons uniformes prune */
+  .accueil-btn.uni {
+    background: var(--bordeaux);
+    color: var(--gold-bright);
+  }
+  .accueil-btn.uni .accueil-sous { color: rgba(251,243,223,0.82); }
+  .accueil-btn.uni-full {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--bordeaux);
+    color: var(--gold-bright);
+    min-height: auto;
+    padding: 16px;
+  }
+  .accueil-btn.uni-full .accueil-sous { color: rgba(251,243,223,0.82); }
+
   .accueil-btn.deposer { background: var(--bordeaux); color: var(--on-prune); }
   .accueil-btn.deposer .accueil-sous { color: rgba(245,236,216,0.8); }
   .accueil-btn.repondre {
@@ -591,6 +597,16 @@
     padding: 16px;
   }
   .accueil-btn.reseaux-full .accueil-sous { color: rgba(245,236,216,0.8); }
+  .accueil-btn.rdv-full {
+    width: 100%;
+    margin-top: 12px;
+    background: var(--white);
+    color: var(--bordeaux);
+    border: 2px solid var(--bordeaux);
+    min-height: auto;
+    padding: 16px;
+  }
+  .accueil-btn.rdv-full .accueil-sous { color: var(--muted); }
   @keyframes pulse-don {
     0% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); transform: scale(1); }
     50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); transform: scale(1.03); }
@@ -997,23 +1013,27 @@
 <div class="accueil" id="accueil">
   <div class="accueil-titre">Que souhaitez-vous faire ?</div>
   <div class="accueil-grid">
-  <button class="accueil-btn deposer" onclick="choisir('publier')">
+  <button class="accueil-btn uni" onclick="choisir('publier')">
     📣 Déposer une annonce
     <span class="accueil-sous">Être présenté·e à des candidats</span>
   </button>
-  <button class="accueil-btn repondre" onclick="choisir('repondre')">
+  <button class="accueil-btn uni" onclick="choisir('repondre')">
     💬 Répondre à une annonce
     <span class="accueil-sous">Vous avez vu une annonce qui vous intéresse</span>
   </button>
-  <button class="accueil-btn contacter" onclick="choisir('contact')">
-    📲 Nous contacter
-    <span class="accueil-sous">Poser une question à l'équipe</span>
+  <button class="accueil-btn uni" onclick="choisir('rdv')">
+    📅 Prendre rendez-vous
+    <span class="accueil-sous">Être écouté(e), conseillé(e) ou accompagné(e)</span>
   </button>
-  <button class="accueil-btn don" onclick="choisir('don')">
-    🤍 Soutenir Narilolané
-    <span class="accueil-sous">Faire un don pour aider la communauté</span>
+  <button class="accueil-btn uni" onclick="choisir('don')">
+    🤍 Faire un don
+    <span class="accueil-sous">Soutenir Narilolané et la communauté</span>
   </button>
   </div>
+  <button class="accueil-btn uni-full" onclick="choisir('contact')">
+    🚨 Contacter Nari en cas d'urgence
+    <span class="accueil-sous">Sans rendez-vous, pour les urgences réelles</span>
+  </button>
   <button class="accueil-btn reseaux-full" onclick="choisir('reseaux')">
     ✨ Rejoignez-nous sur nos réseaux
     <span class="accueil-sous">Abonnez-vous pour ne rien manquer</span>
@@ -1024,23 +1044,12 @@
 <div class="contact-bloc" id="contact-bloc" style="display:none">
   <button class="retour-btn" onclick="retourAccueil()">← Retour</button>
   <div class="contact-content visible">
-    <p class="contact-sous">Disponibles uniquement sur WhatsApp 🟢</p>
+    <div class="mariages-titre" style="color:var(--bordeaux); text-align:center">🚨 Contact en cas d'urgence</div>
+    <p class="contact-sous">Pour toute demande, merci de passer par <strong>« Prendre rendez-vous »</strong>.<br>Ce contact est réservé aux <strong>urgences réelles</strong> 🤍</p>
 
     <a class="contact-card principal" href="https://wa.me/33613857373" target="_blank">
-      <div class="contact-nom">Nari <span class="contact-role">— contact principal</span></div>
+      <div class="contact-nom">Nari <span class="contact-role">— urgences uniquement</span></div>
       <div class="contact-cta">💬 Envoyer un message</div>
-    </a>
-
-    <p class="contact-note">Si après plusieurs relances sans réponse :</p>
-
-    <a class="contact-card" href="https://wa.me/33769878319" target="_blank">
-      <div class="contact-nom-sec">Soleya <span class="contact-role-sec">— contact secondaire</span></div>
-      <div class="contact-cta-sec">💬 Envoyer un message</div>
-    </a>
-
-    <a class="contact-card" href="https://wa.me/33744120969" target="_blank">
-      <div class="contact-nom-sec">Mgn <span class="contact-role-sec">— contact secondaire</span></div>
-      <div class="contact-cta-sec">💬 Envoyer un message</div>
     </a>
   </div>
 </div>
@@ -1070,6 +1079,105 @@
       <a href="https://www.facebook.com/share/18FLSHwwEP/?mibextid=wwXIfr" target="_blank" class="reseau-btn facebook">👥 Facebook</a>
       <a href="https://www.snapchat.com/add/narilolewakomor" target="_blank" class="reseau-btn snap">👻 Snapchat</a>
     </div>
+  </div>
+</div>
+
+<!-- ECRAN RENDEZ-VOUS -->
+<div class="contact-bloc" id="rdv-bloc-ecran" style="display:none">
+  <button class="retour-btn" onclick="retourAccueil()">← Retour à l'accueil</button>
+  <div style="margin-top:14px">
+    <div class="mariages-titre" style="color:var(--bordeaux); text-align:center">📅 Prendre rendez-vous</div>
+    <p class="contact-sous" style="text-align:center">Un moment d'écoute, de conseil ou d'accompagnement avec notre équipe 🤍</p>
+
+    <div class="field-group">
+      <label>Avec qui souhaitez-vous échanger ? <span class="required">*</span></label>
+      <select id="rdv_personne" onchange="majRdv()">
+        <option value="">— Choisir —</option>
+        <option value="Nari|5€|tous les jours de 23h à 00h|23:00,23:30">Nari — 5€ (tous les jours, 23h–00h)</option>
+        <option value="Soleya|5€|jour et horaire à convenir ensemble|">Soleya — 5€ (jour et horaire à convenir)</option>
+        <option value="Mgn|5€|jour et horaire à convenir ensemble|">Mgn — 5€ (jour et horaire à convenir)</option>
+      </select>
+    </div>
+
+    <div id="rdv_dispo_info" class="mode-badge" style="display:none"></div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>📆 Jour souhaité <span class="required">*</span></label>
+        <input type="date" id="rdv_jour">
+      </div>
+      <div class="field-group">
+        <label>🕐 Créneau souhaité <span class="required">*</span></label>
+        <select id="rdv_heure">
+          <option value="">— Choisir —</option>
+        </select>
+        <input type="time" id="rdv_heure_libre" style="display:none">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Prénom <span class="required">*</span></label>
+        <input type="text" id="rdv_prenom" placeholder="Votre prénom">
+      </div>
+      <div class="field-group">
+        <label>Nom <span class="required">*</span></label>
+        <input type="text" id="rdv_nom" placeholder="Votre nom">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label>💬 Raison du rendez-vous <span class="required">*</span></label>
+      <select id="rdv_raison">
+        <option value="">— Choisir —</option>
+        <option value="Juste parler, besoin d'être écouté(e)">Juste parler, besoin d'être écouté(e)</option>
+        <option value="Difficulté dans une mise en relation en cours">Difficulté dans une mise en relation en cours</option>
+        <option value="Besoin de conseils pour ma recherche">Besoin de conseils pour ma recherche</option>
+        <option value="Préparer sérieusement mon projet de mariage">Préparer sérieusement mon projet de mariage</option>
+        <option value="Accompagnement moral / spirituel">Accompagnement moral / spirituel</option>
+        <option value="Autre (je préciserai)">Autre (je préciserai)</option>
+      </select>
+    </div>
+
+    <div id="rdv_error" class="error-msg">⚠️ Merci de remplir tous les champs avant de continuer.</div>
+
+    <div class="don-bloc" style="margin-top:4px">
+      <p class="don-text" id="rdv_prix_txt">Le règlement se fait via PayPal. Choisissez d'abord votre interlocuteur.</p>
+      <a class="don-btn" id="rdv_pay" href="https://www.paypal.me/Narilolane" target="_blank" onclick="rdvPaye=true">💳 Régler via PayPal</a>
+    </div>
+
+    <label class="charte" style="margin-top:10px; display:flex">
+      <input type="checkbox" id="rdv_paye_check" style="margin-right:10px; margin-top:3px; flex-shrink:0">
+      <span>Je confirme avoir effectué le règlement via PayPal pour ce rendez-vous.</span>
+    </label>
+
+    <div class="field-group" style="margin-top:10px">
+      <label>🧾 Référence du paiement PayPal <span class="required">*</span><span class="hint">Le numéro de transaction ou l'email PayPal utilisé</span></label>
+      <input type="text" id="rdv_ref" placeholder="Ex : n° de transaction ou email PayPal">
+    </div>
+
+    <button class="submit-btn" style="margin-top:14px" onclick="envoyerRdv()">
+      📅 Confirmer ma demande de rendez-vous
+    </button>
+  </div>
+</div>
+
+<!-- ECRAN MERCI + ABONNEMENT -->
+<div class="contact-bloc" id="merci-bloc-ecran" style="display:none">
+  <div style="text-align:center; margin-top:10px">
+    <div class="mariages-titre" style="color:var(--bordeaux)">🤍 Merci !</div>
+    <p class="contact-sous" id="merci-txt">Votre demande a bien été préparée. Finalisez l'envoi sur WhatsApp.</p>
+    <div class="mode-badge" style="text-align:left; margin:14px 0">
+      ✨ <strong>En attendant notre réponse, rejoignez-nous !</strong><br>
+      Suivez nos annonces, nos mariages célébrés et nos conseils sur nos réseaux 🤍
+    </div>
+    <div class="reseaux-liens">
+      <a href="https://www.tiktok.com/@narilolanerencontrecomor" target="_blank" class="reseau-btn tiktok">🎵 S'abonner sur TikTok</a>
+      <a href="https://www.instagram.com/narilolane" target="_blank" class="reseau-btn insta">📸 Suivre sur Instagram</a>
+      <a href="https://www.facebook.com/share/18FLSHwwEP/?mibextid=wwXIfr" target="_blank" class="reseau-btn facebook">👥 Suivre sur Facebook</a>
+      <a href="https://www.snapchat.com/add/narilolewakomor" target="_blank" class="reseau-btn snap">👻 Ajouter sur Snapchat</a>
+    </div>
+    <button class="retour-btn" style="margin-top:16px" onclick="retourAccueil()">← Retour à l'accueil</button>
   </div>
 </div>
 
@@ -1179,7 +1287,7 @@
 
   <!-- Mahram — visible si femme -->
   <div class="conditional" id="cond_mahram">
-    <label>👨‍👧 Informations du mahram <span class="required">*</span><span class="hint">Père, frère, oncle ou responsable de famille — obligatoire pour toute mise en contact</span></label>
+    <label>👨‍👧 Informations du mahram (tuteur) <span class="required">*</span><span class="hint">Le mahram est votre tuteur : père, frère, oncle ou responsable de famille — obligatoire pour toute mise en contact</span></label>
     <input type="text" id="mahram_nom" placeholder="Prénom du mahram (ex : Mohamed)" style="margin-bottom:8px">
     <input type="text" id="mahram_lien" placeholder="Lien familial (ex : père, frère, oncle…)" style="margin-bottom:8px">
     <input type="tel" id="mahram_tel" placeholder="Numéro WhatsApp du mahram (ex : +33 6 12 34 56 78)">
@@ -1268,7 +1376,7 @@
   <div class="field-row">
     <div class="field-group">
       <label>💒 Statut matrimonial <span class="required">*</span></label>
-      <select id="statut" onchange="toggleMarie(this)">
+      <select id="statut" onchange="toggleStatut(this)">
         <option value="">— Choisir —</option>
         <option value="Célibataire">Célibataire</option>
         <option value="Divorcé(e)">Divorcé(e)</option>
@@ -1277,14 +1385,17 @@
       </select>
     </div>
     <div class="field-group">
-      <label>👶 Avez-vous des enfants actuellement ? <span class="required">*</span></label>
-      <select id="enfants" onchange="toggleEnfants(this)">
-        <option value="">— Choisir —</option>
-        <option value="Non, je n'ai pas d'enfants">Non, je n'ai pas d'enfants</option>
-        <option value="Oui, 1 enfant">Oui, 1 enfant</option>
-        <option value="Oui, 2 enfants">Oui, 2 enfants</option>
-        <option value="Oui, 3 enfants ou plus">Oui, 3 enfants ou plus</option>
-      </select>
+      <label>👶 Nombre d'enfants actuellement <span class="required">*</span></label>
+      <input type="number" id="enfants" placeholder="Ex : 0, 1, 2…" min="0" max="20">
+    </div>
+  </div>
+
+  <!-- Si célibataire : déjà marié ? -->
+  <div class="conditional" id="cond_celib">
+    <label>Avez-vous déjà été marié(e) auparavant ? <span class="required">*</span></label>
+    <div class="radio-group">
+      <label><input type="radio" name="deja_marie" value="Non, jamais marié(e)"> Non, jamais marié(e)</label>
+      <label><input type="radio" name="deja_marie" value="Oui, déjà marié(e) par le passé"> Oui, déjà marié(e) par le passé</label>
     </div>
   </div>
 
@@ -1366,13 +1477,13 @@
   <div class="field-row">
     <div class="field-group">
       <label>Quelqu'un avec enfants ? <span class="required">*</span></label>
-      <select id="acc_enfants" onchange="togglePrec(this,'prec_enfants')">
+      <select id="acc_enfants" onchange="toggleAccEnfants(this)">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
         <option value="Non">Non</option>
         <option value="Selon la situation">Selon la situation</option>
       </select>
-      <textarea id="prec_enfants" class="prec-field" placeholder="Précisez quelle situation ?"></textarea>
+      <input type="text" id="prec_enfants" class="prec-field" placeholder="Jusqu'à combien d'enfants acceptez-vous ? (ex : jusqu'à 2)" style="display:none">
     </div>
     <div class="field-group">
       <label>Quelqu'un à l'étranger ? <span class="required">*</span></label>
@@ -1398,7 +1509,7 @@
       <textarea id="prec_demenager" class="prec-field" placeholder="Précisez quelle situation ?"></textarea>
     </div>
     <div class="field-group">
-      <label>Quelqu'un sans papiers ? <span class="required">*</span></label>
+      <label>Quelqu'un sans papiers, mais qui travaille et a des revenus ? <span class="required">*</span><span class="hint">Les papiers ne définissent pas l'amour 🤍</span></label>
       <select id="acc_papiers" onchange="togglePrec(this,'prec_papiers')">
         <option value="">— Choisir —</option>
         <option value="Oui">Oui</option>
@@ -1455,17 +1566,41 @@
     </label>
   </div>
 
-  <!-- ERREUR -->
-  <div class="error-msg" id="error_msg">
-    ⚠️ Veuillez remplir tous les champs obligatoires (marqués d'une *) et cocher la déclaration sur l'honneur avant d'envoyer.
+  <!-- PAIEMENT OBLIGATOIRE -->
+  <div class="don-bloc" style="background:var(--white); border:2px solid var(--bordeaux)">
+    <div class="don-stats" style="color:var(--bordeaux)" id="paiement_titre">💳 Participation : 5€</div>
+    <p class="don-text" style="color:var(--text)" id="paiement_txt">
+      Le traitement de votre dossier nécessite une participation de <strong>5€</strong>, réglée via PayPal. Cette contribution permet à Narilolané de continuer à accompagner sérieusement la communauté.<br><br>
+      <span style="color:var(--muted); font-size:0.78rem">ℹ️ Une participation de 5€ sera également demandée au moment de la mise en relation.</span>
+    </p>
+    <a class="don-btn" href="https://www.paypal.me/Narilolane" target="_blank" onclick="aPaye=true">
+      💳 Régler ma participation (5€) via PayPal
+    </a>
   </div>
 
-  <!-- DON — avant le bouton WhatsApp -->
+  <!-- CONFIRMATION PAIEMENT -->
+  <div class="charte" style="margin-bottom:10px">
+    <label>
+      <input type="checkbox" id="paiement_check">
+      <span>Je confirme avoir effectué le règlement de ma participation (5€) via PayPal.</span>
+    </label>
+  </div>
+  <div class="field-group" style="margin-bottom:14px">
+    <label>🧾 Référence du paiement PayPal <span class="required">*</span><span class="hint">Le numéro de transaction ou l'email PayPal utilisé</span></label>
+    <input type="text" id="paiement_ref" placeholder="Ex : n° de transaction ou email PayPal">
+  </div>
+
+  <!-- ERREUR -->
+  <div class="error-msg" id="error_msg">
+    ⚠️ Veuillez remplir tous les champs obligatoires, cocher la déclaration sur l'honneur et confirmer votre règlement avant d'envoyer.
+  </div>
+
+  <!-- DON LIBRE (en plus) -->
   <div class="don-bloc">
     <div class="don-stats">+35 mariages · +3 naissances · alhamdoulillah 💍</div>
-    <p class="don-text">Narilolané existe grâce à la communauté, pour la communauté. Si cette démarche vous a touché(e) ou si vous souhaitez qu'elle continue d'aider d'autres frères et sœurs à se marier dans le halal, un don — même symbolique — fait une vraie différence.</p>
+    <p class="don-text">En plus de votre participation, vous pouvez soutenir Narilolané par un don libre — chaque geste aide la communauté 🤍</p>
     <a class="don-btn" href="https://www.paypal.me/Narilolane" target="_blank">
-      🤍 Soutenir Narilolané — faire un don
+      🤍 Faire un don libre (facultatif)
     </a>
   </div>
 
@@ -1524,6 +1659,7 @@
 <script>
   let modeActuel = '';
   let etapeActuelle = 1;
+  let aPaye = false;
 
   // Choix depuis l'accueil
   function choisir(mode) {
@@ -1548,17 +1684,26 @@
       return;
     }
 
+    if (mode === 'rdv') {
+      document.getElementById('rdv-bloc-ecran').style.display = 'block';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+      return;
+    }
+
     // Mode publier ou repondre → afficher le questionnaire
     document.getElementById('bloc-questionnaire').style.display = 'block';
     const badge = document.getElementById('mode-badge');
     const condAnnonce = document.getElementById('cond_annonce');
 
+    const payTxt = document.getElementById('paiement_txt');
     if (mode === 'publier') {
       badge.innerHTML = '📣 <strong>Vous déposez votre annonce</strong> — vous serez présenté·e à des candidats';
       condAnnonce.style.display = 'none';
+      if (payTxt) payTxt.innerHTML = 'La publication de votre annonce nécessite une participation de <strong>5€</strong>, réglée via PayPal. Cette contribution permet à Narilolané de continuer à accompagner sérieusement la communauté.<br><br><span style="color:var(--muted); font-size:0.78rem">ℹ️ Une participation de 5€ sera également demandée au moment de la mise en relation.</span>';
     } else if (mode === 'repondre') {
       badge.innerHTML = '💬 <strong>Vous répondez à une annonce</strong> déjà publiée';
       condAnnonce.style.display = 'block';
+      if (payTxt) payTxt.innerHTML = 'Répondre à une annonce nécessite une participation de <strong>5€</strong>, réglée via PayPal. Cette contribution permet à Narilolané de continuer à accompagner sérieusement la communauté.<br><br><span style="color:var(--muted); font-size:0.78rem">ℹ️ Une participation de 5€ sera également demandée au moment de la mise en relation.</span>';
     }
     allerEtape(1);
     window.scrollTo({top: 0, behavior: 'smooth'});
@@ -1570,7 +1715,104 @@
     document.getElementById('contact-bloc').style.display = 'none';
     document.getElementById('don-bloc-ecran').style.display = 'none';
     document.getElementById('reseaux-bloc-ecran').style.display = 'none';
+    document.getElementById('rdv-bloc-ecran').style.display = 'none';
     document.getElementById('bloc-questionnaire').style.display = 'none';
+    const merci = document.getElementById('merci-bloc-ecran');
+    if (merci) merci.style.display = 'none';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // === RENDEZ-VOUS ===
+  let rdvPaye = false;
+
+  function majRdv() {
+    const v = document.getElementById('rdv_personne').value;
+    const info = document.getElementById('rdv_dispo_info');
+    const heureSel = document.getElementById('rdv_heure');
+    const prixTxt = document.getElementById('rdv_prix_txt');
+    heureSel.innerHTML = '<option value="">— Choisir —</option>';
+
+    if (!v) { info.style.display = 'none'; prixTxt.textContent = 'Le règlement se fait via PayPal. Choisissez d\'abord votre interlocuteur.'; return; }
+
+    const [nom, prix, dispo, creneaux] = v.split('|');
+    const heureLibre = document.getElementById('rdv_heure_libre');
+    info.style.display = 'block';
+    info.innerHTML = '🕐 <strong>' + nom + '</strong> — ' + dispo + ' · Tarif : <strong>' + prix + '</strong> par rendez-vous';
+    prixTxt.innerHTML = 'Rendez-vous avec <strong>' + nom + '</strong> : <strong>' + prix + '</strong>. Réglez via PayPal, puis confirmez ci-dessous.';
+
+    if (creneaux) {
+      // Créneaux fixes → liste déroulante
+      heureSel.style.display = 'block';
+      heureLibre.style.display = 'none';
+      heureLibre.value = '';
+      creneaux.split(',').forEach(c => {
+        const o = document.createElement('option');
+        o.value = c; o.textContent = c;
+        heureSel.appendChild(o);
+      });
+    } else {
+      // Pas de créneau fixe → heure libre + avertissement
+      heureSel.style.display = 'none';
+      heureSel.value = '';
+      heureLibre.style.display = 'block';
+      info.innerHTML += '<br><span style="font-size:0.78rem">ℹ️ Le jour et l\'horaire définitifs seront à convenir directement avec ' + nom + '.</span>';
+    }
+  }
+
+  function envoyerRdv() {
+    const err = document.getElementById('rdv_error');
+    err.classList.remove('visible');
+    const champs = ['rdv_personne','rdv_jour','rdv_prenom','rdv_nom','rdv_raison'];
+    let ok = true;
+    champs.forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('invalid');
+      if (!el.value.trim()) { el.classList.add('invalid'); ok = false; }
+    });
+
+    // Heure : liste déroulante OU champ libre selon l'interlocuteur
+    const heureSel = document.getElementById('rdv_heure');
+    const heureLibre = document.getElementById('rdv_heure_libre');
+    const heureVal = heureSel.style.display !== 'none' ? heureSel.value : heureLibre.value;
+    heureSel.classList.remove('invalid'); heureLibre.classList.remove('invalid');
+    if (!heureVal.trim()) {
+      (heureSel.style.display !== 'none' ? heureSel : heureLibre).classList.add('invalid');
+      ok = false;
+    }
+
+    // Référence de paiement obligatoire
+    const refPay = document.getElementById('rdv_ref');
+    refPay.classList.remove('invalid');
+    if (!document.getElementById('rdv_paye_check').checked || !refPay.value.trim()) {
+      if (!refPay.value.trim()) refPay.classList.add('invalid');
+      ok = false;
+    }
+
+    if (!ok) { err.classList.add('visible'); err.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+    const [nom, prix, dispo] = document.getElementById('rdv_personne').value.split('|');
+    const msg =
+`📅 *NARILOLANÉ – Demande de rendez-vous*
+━━━━━━━━━━━━━━━━━━━━
+• Avec : ${nom} (${prix})
+• Jour souhaité : ${document.getElementById('rdv_jour').value}
+• Créneau souhaité : ${heureVal}${dispo.includes('convenir') ? ' (à confirmer avec ' + nom + ')' : ''}
+• Nom : ${document.getElementById('rdv_prenom').value} ${document.getElementById('rdv_nom').value}
+• Raison : ${document.getElementById('rdv_raison').value}
+💳 _Paiement PayPal — réf. : ${refPay.value}_
+━━━━━━━━━━━━━━━━━━━━`;
+    window.open('https://wa.me/33613857373?text=' + encodeURIComponent(msg), '_blank');
+    afficherMerci('Votre demande de rendez-vous a bien été préparée. Finalisez l\'envoi sur WhatsApp.');
+  }
+
+  // Écran merci + invitation à s'abonner
+  function afficherMerci(texte) {
+    ['accueil','contact-bloc','don-bloc-ecran','reseaux-bloc-ecran','rdv-bloc-ecran','bloc-questionnaire'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    document.getElementById('merci-txt').textContent = texte;
+    document.getElementById('merci-bloc-ecran').style.display = 'block';
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
@@ -1590,18 +1832,27 @@
     document.getElementById('cond_contact_homme').classList.toggle('visible', genre === 'homme');
   }
 
-  // Conditional: marié
-  function toggleMarie(sel) {
+  // Conditional: statut (marié / célibataire)
+  function toggleStatut(sel) {
     document.getElementById('cond_marie').classList.toggle('visible', sel.value.includes('épouse'));
+    document.getElementById('cond_celib').classList.toggle('visible', sel.value === 'Célibataire');
   }
-
-  // Conditional: enfants (dropdown version — no longer needed but kept for safety)
+  function toggleMarie(sel) { toggleStatut(sel); }
   function toggleEnfants(sel) {}
 
   // Conditional: "Selon la situation"
   function togglePrec(sel, fieldId) {
     const field = document.getElementById(fieldId);
     const show = sel.value === 'Selon la situation' || sel.value === 'Selon le pays';
+    field.style.display = show ? 'block' : 'none';
+    field.classList.toggle('visible', show);
+  }
+
+  // Conditional: accepte enfants → jusqu'à combien (si Oui ou Selon la situation)
+  function toggleAccEnfants(sel) {
+    const field = document.getElementById('prec_enfants');
+    const show = sel.value === 'Oui' || sel.value === 'Selon la situation';
+    field.style.display = show ? 'block' : 'none';
     field.classList.toggle('visible', show);
   }
 
@@ -1677,6 +1928,7 @@
     if (n === 3) {
       ['statut','enfants','pro','admin','religion','qualites'].forEach(need);
       if (val('statut').includes('épouse') && !document.querySelector('input[name="marie_info"]:checked')) ok = false;
+      if (val('statut') === 'Célibataire' && !document.querySelector('input[name="deja_marie"]:checked')) ok = false;
       if (val('admin') === 'Nationalité comorienne' && !val('admin_comorienne')) { markInvalid('admin_comorienne'); ok = false; }
       if (val('admin') === 'Nationalité du pays où je réside' && !val('admin_pays')) { markInvalid('admin_pays'); ok = false; }
     }
@@ -1779,6 +2031,11 @@
       if (!val('contact_tel')) { markInvalid('contact_tel'); erreurs = true; }
     }
 
+    // Si célibataire : déjà marié obligatoire
+    if (val('statut') === 'Célibataire' && !document.querySelector('input[name="deja_marie"]:checked')) {
+      erreurs = true;
+    }
+
     // Type candidature depuis le mode choisi
     const typeCandidature = modeActuel === 'publier'
       ? 'Publier mon annonce (être présenté·e)'
@@ -1801,6 +2058,10 @@
     const charte = document.getElementById('charte_check').checked;
     if (!charte) erreurs = true;
 
+    const paiement = document.getElementById('paiement_check').checked;
+    if (!paiement) erreurs = true;
+    if (!val('paiement_ref')) { markInvalid('paiement_ref'); erreurs = true; }
+
     if (erreurs) {
       erreur.classList.add('visible');
       erreur.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1809,7 +2070,9 @@
 
     const marieInfo = val('statut').includes('épouse')
       ? `\n↳ Épouse informée : ${document.querySelector('input[name="marie_info"]:checked')?.value || 'Non précisé'}`
-      : '';
+      : (val('statut') === 'Célibataire'
+          ? `\n↳ ${document.querySelector('input[name="deja_marie"]:checked')?.value || 'Non précisé'}`
+          : '');
 
     const villageConfid = document.getElementById('village_confid').checked ? ' (confidentiel)' : '';
 
@@ -1841,7 +2104,7 @@
 
 💼 *SITUATION PERSONNELLE*
 • Statut matrimonial : ${val('statut')}${marieInfo}
-• Enfants : ${val('enfants')}
+• Nombre d'enfants : ${val('enfants')}
 • Situation pro : ${val('pro')}
 • Situation admin : ${
   val('admin') === 'Nationalité comorienne' ? val('admin') + ' (' + val('admin_comorienne') + ')' :
@@ -1861,32 +2124,26 @@
 • Statut étudiant accepté : ${getPrec('acc_etudiant','prec_etudiant')}
 
 ✍️ _Déclarations sur l'honneur signées_
+💳 _Participation 5€ — réf. PayPal : ${val('paiement_ref')}_
 ━━━━━━━━━━━━━━━━━━━━`;
 
     const numero = '33613857373';
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(message)}`, '_blank');
+    afficherMerci('Votre candidature a bien été préparée. Finalisez l\'envoi sur WhatsApp.');
   }
 </script>
 
 <!-- CONTACT FLOTTANT -->
 <div class="fab-contact" id="fab-contact">
   <div class="fab-panel">
-    <div class="fab-title">📲 Nous contacter</div>
-    <div class="fab-sub">Disponibles uniquement sur WhatsApp 🟢</div>
+    <div class="fab-title">🚨 Urgence</div>
+    <div class="fab-sub">Pour une demande, passez par « Prendre rendez-vous ». Ce contact est réservé aux urgences 🤍</div>
     <a class="fab-link principal" href="https://wa.me/33613857373" target="_blank">
       <span class="wa-dot">💬</span>
-      <span><span class="fab-nom">Nari</span><br><span class="fab-role">Contact principal</span></span>
-    </a>
-    <a class="fab-link" href="https://wa.me/33769878319" target="_blank">
-      <span class="wa-dot">💬</span>
-      <span><span class="fab-nom">Soleya</span><br><span class="fab-role">Contact secondaire</span></span>
-    </a>
-    <a class="fab-link" href="https://wa.me/33744120969" target="_blank">
-      <span class="wa-dot">💬</span>
-      <span><span class="fab-nom">Mgn</span><br><span class="fab-role">Contact secondaire</span></span>
+      <span><span class="fab-nom">Nari</span><br><span class="fab-role">Urgences uniquement</span></span>
     </a>
   </div>
-  <button class="fab-btn" onclick="toggleFab(event)" aria-label="Nous contacter">📲</button>
+  <button class="fab-btn" onclick="toggleFab(event)" aria-label="Urgence">🚨</button>
 </div>
 
 <script>
